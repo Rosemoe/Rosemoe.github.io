@@ -120,10 +120,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const highlightShrinkFn = (ele) => {
       const $nextEle = [...ele.parentNode.children].slice(1)
       ele.firstChild.classList.toggle('closed')
-      if (btf.isHidden($nextEle[$nextEle.length - 1])) {
-        $nextEle.forEach(e => { e.style.display = 'block' })
+      const $element = $nextEle[$nextEle.length - 1];
+      if (!ele.firstChild.classList.contains('closed')) {
+        $nextEle.forEach(e => {
+          e.style.height = e.getAttribute('data-height') + 'px'
+        })
       } else {
-        $nextEle.forEach(e => { e.style.display = 'none' })
+        $nextEle.forEach(e => {
+          e.setAttribute('data-height', e.offsetHeight)
+          e.style.height = '0px'
+        })
       }
     }
 
@@ -139,17 +145,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function createEle (lang, langName, item, service) {
       const fragment = document.createDocumentFragment()
-      var isHighlightShrinkLocal = isHighlightShrink
+      let isHighlightShrinkLocal = isHighlightShrink;
       if (isHighlightShrinkLocal !== undefined) {
         if (highlightLangExpand.includes(langName)) isHighlightShrinkLocal = false
         else if (highlightLangCollapse.includes(langName)) isHighlightShrinkLocal = true
       }
-      const highlightShrinkClass = isHighlightShrinkLocal === true ? 'closed' : ''
+      const highlightShrinkClass = ''
       const highlightShrinkEle = isHighlightShrinkLocal !== undefined ? `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>` : ''
       const highlightCopyEle = highlightCopy ? '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>' : ''
 
+      let hlTools = undefined
       if (isShowTool) {
-        const hlTools = document.createElement('div')
+        hlTools = document.createElement('div')
         hlTools.className = `highlight-tools ${highlightShrinkClass}`
         hlTools.innerHTML = highlightShrinkEle + lang + highlightCopyEle
         hlTools.addEventListener('click', highlightToolsFn)
@@ -168,6 +175,12 @@ document.addEventListener('DOMContentLoaded', function () {
         item.insertBefore(fragment, item.firstChild)
       } else {
         item.parentNode.insertBefore(fragment, item)
+      }
+      if (hlTools) {
+        if (isHighlightShrinkLocal) {
+          highlightShrinkFn(hlTools)
+        }
+        [...hlTools.parentNode.children].slice(1).forEach(e => { e.style.transition = 'height .5s'; e.style.overflow = 'hidden' })
       }
     }
 
