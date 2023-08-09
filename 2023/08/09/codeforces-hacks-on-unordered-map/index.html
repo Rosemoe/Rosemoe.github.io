@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.rosemoe.cyou/img/default_cover/16.jpg">
 <meta property="article:published_time" content="2023-08-08T16:45:04.000Z">
-<meta property="article:modified_time" content="2023-08-09T06:45:30.273Z">
+<meta property="article:modified_time" content="2023-08-09T06:49:32.840Z">
 <meta property="article:author" content="Rosemoe">
 <meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-08-09 14:45:30',
+  postUpdate: '2023-08-09 14:49:32',
   highlightLangExpand: 'null',
   highlightLangCollapse: 'null'
 }</script><noscript><style type="text/css">
@@ -164,7 +164,7 @@
       }
     }
     detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_cover/16.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Rosemoe的小博客"><span class="site-name">Rosemoe的小博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Codeforces比赛中的unordered_map Hacks</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-09T06:45:30.273Z" title="更新于 2023-08-09 14:45:30">2023-08-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Codeforces比赛中的unordered_map Hacks"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>打了一下<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1857">Codeforces Round 891 (Div. 3)</a>，赛后看到F题的赛时通过解答被叉（hack）了一大把，非常好奇为啥，所以笔者在hack phase结束之后看了一下这些hack数据的hack点是什么，发现大多数都是叉<code>unordered_map</code>的。这又让我想起刚开始打cf的时候在某场Div. 4中使用了<code>unordered_map</code>结果在hack phase被叉的惨痛经历，然后我突然就想以牙还牙，以后也要叉别人的<code>unordered_map</code>，于是就有了这篇文章。</p>
+    })(window)</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_cover/16.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Rosemoe的小博客"><span class="site-name">Rosemoe的小博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Codeforces比赛中的unordered_map Hacks</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-09T06:49:32.840Z" title="更新于 2023-08-09 14:49:32">2023-08-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Codeforces比赛中的unordered_map Hacks"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>打了一下<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1857">Codeforces Round 891 (Div. 3)</a>，赛后看到F题的赛时通过解答被叉（hack）了一大把，非常好奇为啥，所以笔者在hack phase结束之后看了一下这些hack数据的hack点是什么，发现大多数都是叉<code>unordered_map</code>的。这又让我想起刚开始打cf的时候在某场Div. 4中使用了<code>unordered_map</code>结果在hack phase被叉的惨痛经历，然后我突然就想以牙还牙，以后也要叉别人的<code>unordered_map</code>，于是就有了这篇文章。</p>
 <h1 id="unordered-map-和-map-的工作原理"><a href="#unordered-map-和-map-的工作原理" class="headerlink" title="unordered_map 和 map 的工作原理"></a><code>unordered_map</code> 和 <code>map</code> 的工作原理</h1><p>在Codeforces比赛中，我们通常会选择<code>map</code>而不是<code>unordered_map</code>，尽管<code>map</code>上的插入和查找操作的时间复杂度是$O(log\ N)$的，而<code>unordered_map</code>的插入和查找操作却是均摊$O(1)$的。为什么我们要做这种令人费解的时间复杂度牺牲？原因就在于哈希表的内部工作原理使得它可能被轻易地攻击。</p>
 <h2 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h2><p>根据<a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/container/map">Cpp Reference的说明</a>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::map is a sorted associative container that contains key-value pairs with unique keys. </span><br><span class="line">Keys are sorted by using the comparison function Compare. Search, removal, </span><br><span class="line">and insertion operations have logarithmic complexity. </span><br><span class="line">Maps are usually implemented as Red–black trees.</span><br></pre></td></tr></table></figure>
@@ -235,79 +235,38 @@
 <td align="center">0.031s</td>
 <td align="center">1.205s</td>
 </tr>
+</tbody></table>
+<p>根据<code>_S_growth_factor</code>，从<code>__prime_list</code>取得的较大的可攻击素数以及攻击结果如下：</p>
+<table>
+<thead>
 <tr>
-<td align="center">根据<code>_S_growth_factor</code>，从<code>__prime_list</code>取得的较大的可攻击素数以及攻击结果如下：</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<th align="center">编译器</th>
+<th align="center">素数</th>
+<th align="center">运行状态</th>
 </tr>
-<tr>
-<td align="center">编译器</td>
-<td align="center">素数</td>
-<td align="center">运行状态</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">:—:</td>
-<td align="center">:-:</td>
-<td align="center">:-:</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
+</thead>
+<tbody><tr>
 <td align="center">GNU G++14 6.4.0</td>
 <td align="center">126271</td>
 <td align="center">3.217s</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
 </tr>
 <tr>
 <td align="center">GNU G++17 7.3.0</td>
 <td align="center">107897</td>
 <td align="center">3.387s</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
 </tr>
 <tr>
 <td align="center">GNU G++17 9.2.0 (64bit, msys2)</td>
 <td align="center">126271</td>
 <td align="center">tl</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
 </tr>
 <tr>
 <td align="center">GNU G++20 11.2.0 (64bit, winlibs)</td>
 <td align="center">172933</td>
 <td align="center">tl</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">其中运行状态为<code>tl</code>的表示运行时间超过15s，Codeforces已停止继续执行该代码。</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
 </tr>
 </tbody></table>
+<p>其中运行状态为<code>tl</code>的表示运行时间超过15s，Codeforces已停止继续执行该代码。</p>
 <h2 id="对非64bit的情况分析"><a href="#对非64bit的情况分析" class="headerlink" title="对非64bit的情况分析"></a>对非64bit的情况分析</h2><p>两个标明是64bit的编译器都得到了<code>tl</code>的运行结果，为什么另外两个编译器产生的代码却没有时间超限？<br>使用<code>Custom Invocation</code>运行<code>cout &lt;&lt; sizeof(std::size_t);</code>，发现未标明64bit的编译器均为32bit。而我们hash函数返回的正是<code>std::size_t</code>。因此在hash时，我们的部分数值因为超出了32bit整数可表示的范围，内置hash函数产生的结果并不是我们选择的质数的倍数，导致这些数值被分进了其他的bucket中，我们增加部分判断：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">uint32_t</span> <span class="title">performHash</span><span class="params">(il p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改<code>insertNumbers</code>的代码，对溢出的值做一点小操作：</p>
@@ -318,7 +277,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">custom_hash</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">uint64_t</span> <span class="title">splitmix64</span><span class="params">(<span class="type">uint64_t</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// http://xorshift.di.unimi.it/splitmix64.c</span></span><br><span class="line">        x += <span class="number">0x9e3779b97f4a7c15</span>;</span><br><span class="line">        x = (x ^ (x &gt;&gt; <span class="number">30</span>)) * <span class="number">0xbf58476d1ce4e5b9</span>;</span><br><span class="line">        x = (x ^ (x &gt;&gt; <span class="number">27</span>)) * <span class="number">0x94d049bb133111eb</span>;</span><br><span class="line">        <span class="keyword">return</span> x ^ (x &gt;&gt; <span class="number">31</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">uint64_t</span> x)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="type">static</span> <span class="type">const</span> <span class="type">uint64_t</span> FIXED_RANDOM = chrono::steady_clock::<span class="built_in">now</span>().<span class="built_in">time_since_epoch</span>().<span class="built_in">count</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">splitmix64</span>(x + FIXED_RANDOM);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>然后，将<code>custom_hash</code>添加到我们的<code>unordered_map</code>：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unordered_map&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>, custom_hash&gt; safe_map;</span><br></pre></td></tr></table></figure>
-<p>就可以</p>
+<p>就可以防御住较多的攻击。</p>
 <div class="note orange icon-padding flat"><i class="note-icon fas fa-magic"></i><p>参考资料：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/container/map">std::map - CppReference</a></li>
