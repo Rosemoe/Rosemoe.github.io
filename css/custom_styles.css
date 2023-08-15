@@ -11,3 +11,10 @@ nav#pagination {
     font-display: swap;
     src: url('https://cdn.jsdelivr.net/gh/Rosemoe/Rosemoe.github.io/font/JetBrainsMono-Regular.woff2') format("woff2");
 }
+:root {
+    --highlight-figure-shadow: 0 3px 8px 6px rgba(7,17,27,0.08);
+}
+#article-container figure.highlight {
+    border-radius: 4px;
+    box-shadow: var(--highlight-figure-shadow);
+}

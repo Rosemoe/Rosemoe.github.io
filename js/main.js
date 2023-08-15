@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isHighlightShrinkLocal) {
           highlightShrinkFn(hlTools)
         }
-        [...hlTools.parentNode.children].slice(1).forEach(e => { e.style.transition = 'height .5s'; e.style.overflow = 'hidden' })
+        [...hlTools.parentNode.children].slice(1).forEach(e => { e.style.transition = 'height .5s'; e.style.overflowY = 'hidden' })
       }
     }
 
