@@ -1,3 +1,13 @@
 nav#pagination {
     border-radius: 8px;
 }
+@font-face{
+    font-family: 'HYTMR';
+    font-display: swap;
+    src: url('/font/HYTangMeiRen55W.woff2') format("woff2");
+}
+@font-face{
+    font-family: 'JetBrainsMono';
+    font-display: swap;
+    src: url('/font/JetBrainsMono-Regular.woff2') format("woff2");
+}
