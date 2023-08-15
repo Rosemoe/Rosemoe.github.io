@@ -4,10 +4,10 @@ nav#pagination {
 @font-face{
     font-family: 'HYTMR';
     font-display: swap;
-    src: url('/font/HYTangMeiRen55W.woff2') format("woff2");
+    src: url('https://cdn.jsdelivr.net/gh/Rosemoe/Rosemoe.github.io/font/HYTangMeiRen55W.woff2') format("woff2");
 }
 @font-face{
     font-family: 'JetBrainsMono';
     font-display: swap;
-    src: url('/font/JetBrainsMono-Regular.woff2') format("woff2");
+    src: url('https://cdn.jsdelivr.net/gh/Rosemoe/Rosemoe.github.io/font/JetBrainsMono-Regular.woff2') format("woff2");
 }
