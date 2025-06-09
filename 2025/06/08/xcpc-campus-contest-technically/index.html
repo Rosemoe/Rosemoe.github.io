@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>XCPC 校赛技术筹备指南 | Rosemoe的小博客</title><meta name="author" content="Rosemoe"><meta name="copyright" content="Rosemoe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言时光飞逝，笔者的大学生涯已经来到大三的尾声，即将面临读研还是就业的艰难选择，也不再有太多精力组织校内的 XCPC 比赛。我希望在这里记下一些关于配置选手机器、搭建评测系统的相关经验，谈谈一场 XCPC 校赛的技术工作是如何完成的。 本篇文章将按照时间顺序，介绍如何开展赛前到赛后的技术工作，内容将尽可能详细。 校赛技术环境笔者所在学校的基本技术环境如下：  选手机器为 Windows 系统，自动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCPC 校赛技术筹备指南">
+<meta property="og:url" content="https://blog.rosemoe.cyou/2025/06/08/xcpc-campus-contest-technically/index.html">
+<meta property="og:site_name" content="Rosemoe的小博客">
+<meta property="og:description" content="前言时光飞逝，笔者的大学生涯已经来到大三的尾声，即将面临读研还是就业的艰难选择，也不再有太多精力组织校内的 XCPC 比赛。我希望在这里记下一些关于配置选手机器、搭建评测系统的相关经验，谈谈一场 XCPC 校赛的技术工作是如何完成的。 本篇文章将按照时间顺序，介绍如何开展赛前到赛后的技术工作，内容将尽可能详细。 校赛技术环境笔者所在学校的基本技术环境如下：  选手机器为 Windows 系统，自动">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rosemoe.cyou/img/default_cover/4.jpg">
+<meta property="article:published_time" content="2025-06-08T02:36:46.000Z">
+<meta property="article:modified_time" content="2025-06-09T09:11:43.522Z">
+<meta property="article:author" content="Rosemoe">
+<meta property="article:tag" content="XCPC">
+<meta property="article:tag" content="DOMjudge">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.rosemoe.cyou/img/default_cover/4.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.rosemoe.cyou/2025/06/08/xcpc-campus-contest-technically/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'XCPC 校赛技术筹备指南',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-06-09 17:11:43',
+  highlightLangExpand: 'null',
+  highlightLangCollapse: 'cpp'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_cover/4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Rosemoe的小博客"><span class="site-name">Rosemoe的小博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">XCPC 校赛技术筹备指南</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-09T09:11:43.522Z" title="更新于 2025-06-09 17:11:43">2025-06-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">技术心得</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="XCPC 校赛技术筹备指南"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>时光飞逝，笔者的大学生涯已经来到大三的尾声，即将面临读研还是就业的艰难选择，也不再有太多精力组织校内的 XCPC 比赛。我希望在这里记下一些关于配置选手机器、搭建评测系统的相关经验，谈谈一场 XCPC 校赛的技术工作是如何完成的。</p>
+<p>本篇文章将按照时间顺序，介绍如何开展赛前到赛后的技术工作，内容将尽可能详细。</p>
+<h2 id="校赛技术环境"><a href="#校赛技术环境" class="headerlink" title="校赛技术环境"></a>校赛技术环境</h2><p>笔者所在学校的基本技术环境如下：</p>
+<ul>
+<li>选手机器为 Windows 系统，自动还原，不让装镜像</li>
+<li>不同机房的选手机系统存在很多软件差异</li>
+<li>难以通过外部手段限制选手机器能访问的网络地址</li>
+<li>校内有一台专用的比赛服务器</li>
+</ul>
+<p>我不太清楚其他学校的情况如何，不过这也许和多数学校的条件相近。</p>
+<h2 id="本篇内容的本地-服务器环境"><a href="#本篇内容的本地-服务器环境" class="headerlink" title="本篇内容的本地&#x2F;服务器环境"></a>本篇内容的本地&#x2F;服务器环境</h2><ul>
+<li>个人 Windows 电脑</li>
+<li>Ubuntu Server 22.04 LTS 服务器</li>
+<li>DOMjudge 8.3</li>
+<li>icpctools 2.5.936</li>
+</ul>
+<h2 id="阅读需要的知识-能力"><a href="#阅读需要的知识-能力" class="headerlink" title="阅读需要的知识&#x2F;能力"></a>阅读需要的知识&#x2F;能力</h2><p>举办一场简单的校赛，技术方面的要求不高，但是至少需要以下方面的知识&#x2F;能力：</p>
+<ul>
+<li>网络方面的基本知识</li>
+<li>Windows&#x2F;Linux 基本命令行操作</li>
+<li>在 Linux 下编辑文件</li>
+<li><a target="_blank" rel="noopener" href="https://www.docker.com/">Docker</a> 的基本使用</li>
+<li>阅读软件文档的能力</li>
+</ul>
+<h1 id="比赛前"><a href="#比赛前" class="headerlink" title="比赛前"></a>比赛前</h1><p>比赛前首要的就是搭建比赛的评测系统，导入队伍信息，其次是完成选手机操作系统的配置。</p>
+<h2 id="搭建比赛评测系统"><a href="#搭建比赛评测系统" class="headerlink" title="搭建比赛评测系统"></a>搭建比赛评测系统</h2><p>比赛评测系统采用 <a target="_blank" rel="noopener" href="https://www.domjudge.org/">DOMjudge</a>，如无特殊需求（如搭建负载均衡集群等），直接 Docker Compose 的方式进行部署，开箱即用。<br>DOMjudge 需要部署两个部分：</p>
+<ul>
+<li>domserver: DOMjudge 的 Web App，选手和工作人员使用的网页面板</li>
+<li>judgehost: DOMjudge 的评测主机，用于评测题目<br>部署 DOMjudge 之前还需要部署一个 MariaDB 数据库，用于存储 DOMjudge 的系统数据；一个 CDS (Contest Data Server) 用于比赛数据收集和后续滚榜。</li>
+</ul>
+<h3 id="选择机器"><a href="#选择机器" class="headerlink" title="选择机器"></a>选择机器</h3><p>选择的机器必须保证选手机器可以访问，如学校内网的服务器，或者购买的公网服务器。</p>
+<div class="note warning flat"><p>如果选用公网服务器，建议选购带宽较大的国内服务器，避免比赛时因访问流量过大带来 IP 封禁的风险。</p>
+</div>
+
+<p>建议使用性能较好的机器作为 mariadb&#x2F;domserver 的部署机器，否则可能导致选手访问评测系统速度较慢。</p>
+<p>另外，如果 domserver与mariadb 或者 domserver与judgehost 没有部署在同一台机器上，则必须保证他们之间的网络通信有足够的带宽，否则可能导致网站访问缓慢，或者下发测试点花费较长时间。</p>
+<p>为保证比赛公平性，如果需要在多个机器上部署 judgehost, 请确保这些机器的软硬件配置相同。</p>
+<h3 id="配置机器环境"><a href="#配置机器环境" class="headerlink" title="配置机器环境"></a>配置机器环境</h3><h4 id="操作系统环境"><a href="#操作系统环境" class="headerlink" title="操作系统环境"></a>操作系统环境</h4><p>操作系统一般会选用 Ubuntu。<strong>不建议使用过新的系统，尤其是需要在机器上部署 judgehost 时。</strong><br>之前配置的时候遇到一个坑点，使用 Ubuntu 24.04 的时候无论如何 judgehost 都无法启动，原因是 cgroup v1 在这个系统版本里已经被移除了，即使配置系统使用 cgroup v1，系统仍会使用 cgroup v2，导致 judgehost 无法启动。</p>
+<p>个人建议使用久经考验的 Ubuntu 22.04. 下面的论述都将以 Ubuntu 22.04 为操作系统。</p>
+<h4 id="连接到服务器"><a href="#连接到服务器" class="headerlink" title="连接到服务器"></a>连接到服务器</h4><p>如果您无法直接连接到服务器（比如服务器放在机房，或者使用云服务器），请通过 SSH 的方式连接到您的服务器执行后续的命令。</p>
+<p>关于文件传输：如果您正在使用 Windows 操作系统，可以使用 <a target="_blank" rel="noopener" href="https://winscp.net/eng/index.php">WinSCP</a> 软件进行文件传输。如果您正在使用 Linux 的某一发行版，则可以直接通过 SCP 命令进行文件传输。</p>
+<h4 id="配置-cgroup"><a href="#配置-cgroup" class="headerlink" title="配置 cgroup"></a>配置 cgroup</h4><p>如果这台机器需要运行 judgehost，则首先应当为这台机器配置 cgroup，否则这一步可以跳过。</p>
+<p>以 root 权限编辑 <code>/etc/default/grub</code> 文件，找到 <code>GRUB_CMDLINE_LINUX_DEFAULT=</code>开头的行，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet&quot;</span><br></pre></td></tr></table></figure>
+<p>在引号内部最后添加 <code> cgroup_enable=memory swapaccount=1</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet cgroup_enable=memory swapaccount=1&quot;</span><br></pre></td></tr></table></figure>
+<p>在较新的系统，还需要添加 <code> systemd.unified_cgroup_hierarchy=0</code> (Ubuntu 22.04需要添加):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=0&quot;</span><br></pre></td></tr></table></figure>
+<p>保存文件，执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure>
+<p>更改完成后，需要重启系统：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Docker-Docker-Compose"><a href="#安装-Docker-Docker-Compose" class="headerlink" title="安装 Docker &amp; Docker Compose"></a>安装 Docker &amp; Docker Compose</h3><p>如果没有安装 Docker，则需要先安装 Docker，除非你希望直接在系统中进行<a target="_blank" rel="noopener" href="https://www.domjudge.org/docs/manual/main/install-domserver.html">繁琐的部署</a>。</p>
+<p>请参考<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">官方的安装文档</a>或者直接执行下面的指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh ./get-docker.sh</span><br></pre></td></tr></table></figure>
+<p>这会安装 Docker 和 Docker Compose.</p>
+<div class="note info flat"><p>由于学校管理要求或者神秘力量限制，您可能遇到无法连接外网或者下载缓慢的问题。此时请参考上述官方文档，配合文件传输工具进行离线安装。</p>
+</div>
+<h3 id="配置和启动-Docker-容器"><a href="#配置和启动-Docker-容器" class="headerlink" title="配置和启动 Docker 容器"></a>配置和启动 Docker 容器</h3><h4 id="编写评测系统容器配置文件"><a href="#编写评测系统容器配置文件" class="headerlink" title="编写评测系统容器配置文件"></a>编写评测系统容器配置文件</h4><p>我们使用 Docker Compose 的方式来部署数据库和 Domjudge.<br>建议 mariadb, domserver, cds 部署在同一个机器上。如果 judgehost 也运行在同一个机器上，那么可以参考下面的配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">domjudge:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">domjudge</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">mariadb:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">mariadb</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mariadb:latest</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">domjudge</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">13306</span><span class="string">:3306</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CONTAINER_TIMEZONE=Asia/Shanghai</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_ROOT_PASSWORD=$db_root_passwd</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_USER=$db_user</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_PASSWORD=$db_passwd</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_DATABASE=$db_database</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">--max-connections=1000</span> <span class="string">--innodb-log-file-size=1024M</span> <span class="string">--max-allowed-packet=1024M</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">domserver:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">domserver</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">domjudge/domserver:latest</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/sys/fs/cgroup:/sys/fs/cgroup</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/var/local/print:/var/local/print</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">domjudge</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">80</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mariadb</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CONTAINER_TIMEZONE=Asia/Shanghai</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_HOST=mariadb</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_ROOT_PASSWORD=$db_root_passwd</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_USER=$db_user</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_PASSWORD=$db_passwd</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_DATABASE=$db_database</span></span><br><span class="line"></span><br><span class="line"><span class="attr">judgehost-1:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">judgehost-1</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">domjudge/judgehost:latest</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">judgedaemon-1</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/sys/fs/cgroup:/sys/fs/cgroup</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">domjudge</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">domserver</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CONTAINER_TIMEZONE=Asia/Shanghai</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DOMSERVER_BASEURL=http://domserver/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">DAEMON_ID=1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">JUDGEDAEMON_PASSWORD=$restapi_key</span></span><br></pre></td></tr></table></figure>
+<p>将上面的内容保存到 docker-compose.yml，并替换 <code>$db_root_passwd</code>、<code>$db_user</code>、<code>$db_passwd</code>、<code>$db_database</code> 为您想要的值。注意同一个变量的值必须是一样的。<br><code>max-allowed-packet</code> 建议设置为题目最大测试点大小的 2 倍，<code>innodb-log-file-size</code> 建议设置为题目最大测试点大小的 10 倍，请根据实际情况调整。</p>
+<p>此外，您还需要根据您的比赛需要配置 judgehost 的数量，将配置最后的 judgehost-1 部分的内容复制粘贴，并修改名称（judgehost-X）、主机名（judgedaemon-X）、DAEMON_ID（X），X 为您评测机的序号，从 1 开始。</p>
+<div class="note warning flat"><p>judgehost 的数量不能超过 CPU 的总核心数，因为它需要绑定一个 CPU 核心执行任务。不建议设置 <code>DAEMON_ID</code> 为 0，因为 Linux 系统会在 CPU 0 上派遣任务（除非特殊指定其他核心）。</p>
+</div>
+<div class="note warning flat"><p>不建议使用过多的 judgehost，除非您使用多机承担前端请求。 因为 judgehost 也需要通过 API 访问 domserver 轮询提交进行评测，会给服务器带来压力。</p>
+</div>
+<h4 id="启动-domserver"><a href="#启动-domserver" class="headerlink" title="启动 domserver"></a>启动 domserver</h4><p>编辑完成后，我们<strong>暂时先启动 mariadb 和 domserver，不要启动其他容器</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker compose up -d mariadb domserver</span><br></pre></td></tr></table></figure>
+<div class="note info flat"><p>如果因为网络问题无法拉取镜像，请在其他可以正常拉取镜像的机器上拉取并导出相应的镜像，再导入到您的机器上。此过程可以参考网上关于 Docker 镜像导出导入的文章，此处不再赘述。</p>
+</div>
+<p>启动完成后，我们需要获取预设的 admin 密码和 API 密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it domserver <span class="built_in">cat</span> /opt/domjudge/domserver/etc/initial_admin_password.secret</span><br><span class="line">docker <span class="built_in">exec</span> -it domserver <span class="built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</span><br></pre></td></tr></table></figure>
+<p>第一条指令将获得 DOMjudge 网页中 admin 账户的密码，第二条指令将获得 Domjudge RestAPI 的访问密码，用于配置评测机。</p>
+<p>现在你可以通过 http:&#x2F;&#x2F;服务器IP&#x2F; 访问 domserver，并使用 admin 账号登陆，查看系统是否正常运行。</p>
+<h4 id="启动-judgehost"><a href="#启动-judgehost" class="headerlink" title="启动 judgehost"></a>启动 judgehost</h4><p>现在，将 <code>docker-compose.yml</code> 中的 <code>$restapi_key</code> 替换为从 <code>restapi.secret</code> 文件获取的密码。然后，将配置文件中的所有容器启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker compose up -d</span><br></pre></td></tr></table></figure>
+<p>如果各个 judgehost 正常启动，现在可以在网页中的 “judgehosts” 页面看到您配置的评测机已经出现，旁边有一个绿色的勾表示状态正常。<br>那么，恭喜你，现在 DOMjudge 评测系统本身已经完成了部署！</p>
+<h4 id="为-CDS-创建-DOMjudge-账号"><a href="#为-CDS-创建-DOMjudge-账号" class="headerlink" title="为 CDS 创建 DOMjudge 账号"></a>为 CDS 创建 DOMjudge 账号</h4><p>在 Jury Interface 中选择 “Users”，然后选择 “Add new user”，填写用户名为 “cds”，并自定一个安全的密码。</p>
+<p>下方 Roles 需要勾选： API reader, API writer, Source code reader</p>
+<p>创建用户，记录好密码备用。</p>
+<h4 id="编写CDS容器配置文件"><a href="#编写CDS容器配置文件" class="headerlink" title="编写CDS容器配置文件"></a>编写CDS容器配置文件</h4><p>CDS (Contest Data Server) 不是 DOMjudge 的一部分，而是后面信息展示、滚榜、颁奖要用到的 icpctools 的一部分。</p>
+<p>将工作目录更改到一个不同于上面您保存 <code>docker-compose.yml</code> 的目录，然后创建一个新的 <code>docker-compose.yml</code>：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">cds:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">cds</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">ghcr.io/icpctools/cds:2.5.936</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./accounts.yaml:/opt/wlp/usr/servers/cds/config/accounts.yaml</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8443</span><span class="string">:8443</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CCS_URL=http://$your_ip/api/contests/$cid</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CCS_USER=$ccs_user</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CCS_PASSWORD=$ccs_passwd</span></span><br></pre></td></tr></table></figure>
+<p>将 <code>$your_ip</code> 更改为您 domserver 运行主机的 IP 地址。并更改 <code>$ccs_user</code>、<code>$ccs_passwd</code>，分别为前面前面创建的 cds 账户的账号和密码。</p>
+<p><code>$cid</code> 需要更改为 DOMjudge 中正赛的 Contest ID，由于我们尚未建立比赛，后面临近比赛开始再更改此变量并启动 CDS。另外 CDS 只能服务一场比赛，因此服务完一场比赛后，需要删除该容器（<code>sudo docker compose down</code>）。</p>
+<div class="note warning flat"><p>不建议使用过新的 icpctools 版本，因为可能存在潜在的问题。<br>请咨询其他有办赛经验的人了解相对稳定的 icpctools 版本号。</p>
+</div>
+<div class="note warning flat"><p>如果您网络不佳，建议提前拉取镜像。</p>
+</div>
+<p>在同目录下创建 <code>accounts.yaml</code>，填入以下内容，并编辑各个账户的密码（<code>__XXX_PASSWORD__</code>）。后面配置信息展示屏、滚榜、设置奖项等需要用到。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">admin</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__ADMIN_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">admin</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">presAdmin</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__PRES_ADMIN_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">presAdmin</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">blue</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__BLUE_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">staff</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">balloon</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__BALLOON_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">balloon</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">presentation</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__PRESENTATION_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">public</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">myicpc</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__MYICPC_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">analyst</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">live</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__LIVE_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">analyst</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">username:</span> <span class="string">team1</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">__TEAM1_PASSWORD__</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">team</span></span><br><span class="line">  <span class="attr">team_id:</span> <span class="string">&#x27;1&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>至此，比赛的评测相关软件已经基本安装完毕。</p>
+<h2 id="配置评测系统"><a href="#配置评测系统" class="headerlink" title="配置评测系统"></a>配置评测系统</h2><p>首先我们需要进行数个 JSON 生成与导入工作。请确保您已拥有选手的报名信息，并分配好选手的座位表。</p>
+<h3 id="如何导入各类-JSON-数据"><a href="#如何导入各类-JSON-数据" class="headerlink" title="如何导入各类 JSON 数据"></a>如何导入各类 JSON 数据</h3><p>从 DOMjudge Jury Interface 进入 Import &#x2F; export 页面。<br><img src="/img/posts/xcpc-campus-contest-technically/import-entry.png" alt="Jury Interface"><br>找到 Import JSON &#x2F; YAML 部分。选择对应的 Type 和文件，点击 “Import” 进行导入。Type 一般只会选 organizations, teams, accounts 几个选项，分别对应组织信息、队伍信息、账号信息。<br><img src="/img/posts/xcpc-campus-contest-technically/import-json.png" alt="Import JSON"><br>具体的 JSON 的内容格式，请参照以下信息和<a target="_blank" rel="noopener" href="https://www.domjudge.org/docs/manual/8.3/import.html">官方文档</a>。</p>
+<p>请注意，您生成的 JSON 文件应该使用 UTF-8 编码，否则中文可能导入后显示异常。</p>
+<h3 id="导入学校信息"><a href="#导入学校信息" class="headerlink" title="导入学校信息"></a>导入学校信息</h3><p>根据报名的选手信息，生成一个 <code>organizations.json</code>，用于导入队伍的学校信息。内容结构如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;学校简称，例如：PKU&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;formal_name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;学校详名，例如：Peking University&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;country&quot;</span><span class="punctuation">:</span> <span class="string">&quot;国家代码，例如：CHN&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生成一个唯一的组织ID，例如：INST-1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>如果您希望达到更好的显示效果，可以手动或者编写脚本使用 API 上传各个学校的校徽。</p>
+<div class="note info flat"><p>您可以访问 <code>http://服务器IP/api/doc</code> 来获取您的 DOMjudge 支持的 API.</p>
+</div>
+<h3 id="导入队伍信息"><a href="#导入队伍信息" class="headerlink" title="导入队伍信息"></a>导入队伍信息</h3><p>您需要根据报名信息，生成一个 <code>teams.json</code> 用于导入队伍信息。内容结构如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生成一个队伍的唯一ID&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;group_ids&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="string">&quot;队伍类型ID&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;队伍名称&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;organization_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;organizations.json中设置的对应ID&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;room&quot;</span><span class="punctuation">:</span> <span class="string">&quot;队伍座位&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<div class="note info flat"><p>队伍类型ID可以在 “Team Categories” 页面查看。如果没有修改过，3 是正式队伍，4 是打星队伍。</p>
+</div>
+<p><code>room</code> 和 <code>organization_id</code> 是可选的，如果不需要，可以不写这两个字段。</p>
+<p>推荐设置 <code>room</code>，方面后面发放气球和打印。</p>
+<p>如果您希望达到更好的显示效果，可以手动或者编写脚本使用 API 上传各个队伍的滚榜照片。</p>
+<h3 id="导入队伍账号"><a href="#导入队伍账号" class="headerlink" title="导入队伍账号"></a>导入队伍账号</h3><p>您需要根据报名信息，生成一个 <code>accounts.json</code> 用于导入队伍账号。您需要为每支队伍生成一个账号。内容结构如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;team&quot;</span><span class="punctuation">,</span> <span class="comment">// 表示为team类型的账户</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;账户的唯一ID，建议与用户名一致&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用户名，例如：team-001&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生成一个队伍的随机密码&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;账户显示名称，和队伍名保持一致就可以&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;team_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;对应上面队伍设置的唯一ID&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>建议为热身赛和正式赛生成不同的密码。即热身赛结束后，重新随机生成所有账户的 <code>password</code> 一项，然后重新导入 <code>accounts.json</code>。需要特别注意，不要修改 <code>username</code> 字段，否则<a target="_blank" rel="noopener" href="https://github.com/DOMjudge/domjudge/blob/fc07d9df10a5c3f3dfe617f2b83bc4d10e12bdbd/webapp/src/Service/ImportExportService.php#L1390">可能导致生成新的账户</a>，而旧的账户仍然可用。</p>
+<p>如果您能够为选手机位分配固定的 IP，则您可以不设置 <code>password</code> 字段，而选择设置 <code>ip</code> 字段指定选手机器的 IP。这样选手的机器可以在打开 DOMjudge 网页时自动登陆而无需输入密码.</p>
+<h3 id="导入题目"><a href="#导入题目" class="headerlink" title="导入题目"></a>导入题目</h3><p>如果您使用 <a target="_blank" rel="noopener" href="https://polygon.codeforces.com/">Polygon</a> 出题，则您可以通过 <a target="_blank" rel="noopener" href="https://github.com/cn-xcpc-tools/Polygon2DOMjudge">Polygon2Domjudge</a> 工具将 Polygon 中导出的题目包转换为 DOMjudge 支持的格式。请参阅 Polygon2Domjudge 的项目页获取详细用法。</p>
+<div class="note info flat"><p>关于如何在 Polygon 上筹备比赛题目，可参考 <a target="_blank" rel="noopener" href="https://oi-wiki.org/tools/polygon/">OI-Wiki 上的说明</a>。</p>
+</div>
+<p>在获取了 DOMjudge 支持的格式的各题题目包后，您可以从 “Import &#x2F; export” 页最上方选择压缩包进行题目的逐个导入。<br><img src="/img/posts/xcpc-campus-contest-technically/problem-import.png" alt="Problem Import"></p>
+<h4 id="PHP-上传大小超限-爆内存的处理"><a href="#PHP-上传大小超限-爆内存的处理" class="headerlink" title="PHP 上传大小超限&#x2F;爆内存的处理"></a>PHP 上传大小超限&#x2F;爆内存的处理</h4><p>当题目数据非常大时，可能遇到超过 PHP 上传文件大小限制（256MB），或者超出 PHP 内存限制（512MB）的问题，此时有两种解决方案：</p>
+<ol>
+<li>调整题目压缩包，先上传部分数据，剩余的数据手动逐个上传</li>
+<li>调整 domserver 的 PHP 配置，重启该容器</li>
+</ol>
+<p>这里详细介绍第二种。该配置位于容器的 <code>/opt/domjudge/domserver/etc/domjudge-fpm.conf</code> 文件内。由于容器内并没有 vim 等文本编辑器，编辑起来较为困难，故将文件复制出来再编辑，再回拷。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker compose <span class="built_in">cp</span> domserver:/opt/domjudge/domserver/etc/domjudge-fpm.conf ./domjudge-fpm.conf</span><br></pre></td></tr></table></figure>
+<p>编辑文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ./domjudge-fpm.conf</span><br></pre></td></tr></table></figure>
+<p>可以看到比较下面的地方有几行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; Set these three to be at least the size of your largest testcase and</span><br><span class="line">; largest expected program output.</span><br><span class="line">php_admin_value[memory_limit] = 512M</span><br><span class="line">php_admin_value[upload_max_filesize] = 256M</span><br><span class="line">php_admin_value[post_max_size] = 256M</span><br></pre></td></tr></table></figure>
+<p>将上面几个值调整为您需要的值，保存，再回拷文件，重启 domserver 容器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker compose <span class="built_in">cp</span> ./domjudge-fpm.conf domserver:/opt/domjudge/domserver/etc/domjudge-fpm.conf</span><br><span class="line">sudo docker compose restart domserver</span><br></pre></td></tr></table></figure>
+<h3 id="调整评测设置"><a href="#调整评测设置" class="headerlink" title="调整评测设置"></a>调整评测设置</h3><p>从 Jury Interface 进入 Contests 页 Configuration settings 页，切换到 Judging 标签，注意以下设置：</p>
+<ul>
+<li>Output limit: 确保 Output limit 大小不小于各个测试点标准答案的输出大小</li>
+<li>Timelimit overshoot: 一般设为 <code>1s|10%</code></li>
+<li>Enable parallel judging: 并行评测，不建议开启，如果赛前题目测试中遇到奇怪的超时问题，可以尝试关闭此选项重测</li>
+</ul>
+<h3 id="创建比赛"><a href="#创建比赛" class="headerlink" title="创建比赛"></a>创建比赛</h3><p>从 Jury Interface 进入 Contests 页，选择 “Add new contest” 新建一场比赛。以下是各个参数的配置说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Shortname</td>
+<td align="left">比赛的短名称，例如：2025_TUPC_WARMUP</td>
+</tr>
+<tr>
+<td align="left">Name</td>
+<td align="left">比赛的全名，例如： 2025 Test University Programming Contest Warmup</td>
+</tr>
+<tr>
+<td align="left">Activate time</td>
+<td align="left">比赛激活时间，队伍在激活时间后才能看到此比赛，例如：2025-06-09 00:09:00 Asia&#x2F;Shanghai</td>
+</tr>
+<tr>
+<td align="left">Start time</td>
+<td align="left">比赛开始时间，在开始时间后才能看题、答题，例如：2025-06-09 00:10:00 Asia&#x2F;Shanghai</td>
+</tr>
+<tr>
+<td align="left">Scoreboard freeze time</td>
+<td align="left">封榜时间，一般设置为比赛开始后的 4 小时: +04:00:00</td>
+</tr>
+<tr>
+<td align="left">End time</td>
+<td align="left">比赛结束时间，一般设置为比赛开始后的 5 小时: +05:00:00</td>
+</tr>
+<tr>
+<td align="left">Scoreboard unfreeze time</td>
+<td align="left">解除封榜的时间，一般不设置，后面手动解封</td>
+</tr>
+<tr>
+<td align="left">Deactivate time</td>
+<td align="left">比赛取消激活的时间，一般不设置，后面手动 deactivate</td>
+</tr>
+<tr>
+<td align="left">Allow submit</td>
+<td align="left">允许提交，一般设置为 Yes</td>
+</tr>
+<tr>
+<td align="left">Record balloons</td>
+<td align="left">处理气球，一般设置为 Yes</td>
+</tr>
+<tr>
+<td align="left">Medal enabled</td>
+<td align="left">一般设置为 Yes, 并补充能获得奖项的参赛类别，以及各种牌子发几个</td>
+</tr>
+<tr>
+<td align="left">Enable public scoreboard</td>
+<td align="left">开放外榜，允许未登陆用户查看榜单，根据实际需要设置</td>
+</tr>
+<tr>
+<td align="left">Open contest to all teams</td>
+<td align="left">选择 No, 并在随即出现的 Team categories 中选择参赛的队伍类别</td>
+</tr>
+<tr>
+<td align="left">Banner</td>
+<td align="left">放置在比赛页上方的图片，根据需要设置</td>
+</tr>
+<tr>
+<td align="left">Scoreboard warning message</td>
+<td align="left">显示在榜单上的文本警告信息，必要时可以设置</td>
+</tr>
+</tbody></table>
+<p>页面最下方是题目列表，按序选择要添加的题目，配置题号（Short name）、气球颜色（Colour）。Points 在 XCPC 赛制中固定为 1. 其他设置一般不动。</p>
+<p>创建比赛后仍可以对比赛和赛题列表进行编辑。</p>
+<h2 id="配置打印"><a href="#配置打印" class="headerlink" title="配置打印"></a>配置打印</h2><p>前面的 <code>docker-compose.yml</code> 文件中已经配置了一个文件夹映射，如果需要配置打印脚本，请直接在 domserver 的宿主机的 <code>/var/local/print/</code> 目录下创建打印脚本，并编写脚本的内容。</p>
+<p>我们曾经采用的<a target="_blank" rel="noopener" href="https://github.com/Perinze/domjudge-by-docker/tree/master/print">方案</a>是在 Linux 系统下使用 cups, ps2pdf 等工具，配合 Python 编写的 HTTP Server 在技术人员的电脑上远程打印。如果恰好符合您的需求，可以使用此方案。</p>
+<p>我现在更推荐使用 <a target="_blank" rel="noopener" href="https://github.com/hydro-dev">Hydro</a> 的 <a target="_blank" rel="noopener" href="https://github.com/hydro-dev/xcpc-tools">xcpc-tools</a> 做打印工作，支持多平台系统。它不但可以为 DOMjudge 提供打印功能，也可以连接小票机打印气球单，方便发气球。仓库里也包含一个为 DOMjudge 设计的打印脚本，参照仓库内的文档配置 xcpc-tools (包括 fetch server 和 client) 和 DOMjudge 即可使用。</p>
+<div class="note warning flat"><p>在 DOMjudge 中设置打印指令时，脚本命令需要使用完整路径，例如您在该目录下创建了名为 <code>printcode</code> 的脚本，则示例配置为 <code>/var/local/print/printcode [teamname] [location] [original] [file]</code> （后面的参数需根据打印脚本实际进行配置）</p>
+</div>
+<h2 id="测试赛题"><a href="#测试赛题" class="headerlink" title="测试赛题"></a>测试赛题</h2><p>在题目导入到评测系统后，强烈建议创建一场包含所有赛题的非公开测试赛，以内部账号进行提交，测试各个赛题正解在本地部署的评测机上的运行时间、内存占用，并根据实测情况，调整各个题目的时空限制。</p>
+<p>这么做可以避免出题平台与本地评测软硬件条件不一致导致选手被卡常或者不小心放过错解。</p>
+<p>测试完成后，可以 finalize 并 deactivate 测试比赛。</p>
+<h2 id="配置选手机环境"><a href="#配置选手机环境" class="headerlink" title="配置选手机环境"></a>配置选手机环境</h2><p>这里主要介绍我校在选手机使用 Windows 系统、不让安装自定义镜像、硬盘自动还原等条件下的环境配置。如果您所在学校有条件自行安装系统镜像等，可以跳过本节。</p>
+<p>我们主要使用 bat 脚本对 Windows 系统进行配置。由于系统自动还原，所以每场赛事开始前回由略懂电脑操作的志愿者携带U盘，进行环境配置。</p>
+<h3 id="环境-软件配置"><a href="#环境-软件配置" class="headerlink" title="环境&#x2F;软件配置"></a>环境&#x2F;软件配置</h3><p>各个软件均采用免安装版本，包括：</p>
+<ul>
+<li>OpenJDK 17.0.0.1</li>
+<li>Python 3.11.2 (Embed)</li>
+<li>MinGW64 (GCC 12.2.0)</li>
+<li>Google Chrome Portable</li>
+<li>DevCpp</li>
+<li>VSCode (安装 C&#x2F;C++, Java, Python, CPH 和中文语言包插件)</li>
+</ul>
+<p>这些程序和需要放在桌面的文件直接拷贝到 <code>C:\Applications</code> 下</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Copying Files</span><br><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">xcopy.exe</span> /<span class="title">B</span> /<span class="title">E</span> /<span class="title">Y</span> /<span class="title">Q</span> .\<span class="title">Applications</span> <span class="title">C</span>:\<span class="title">Applications</span>\</span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">xcopy.exe</span> /<span class="title">B</span> /<span class="title">E</span> /<span class="title">Y</span> /<span class="title">Q</span> .\<span class="title">DesktopFiles</span> <span class="title">C</span>:\<span class="title">Users</span>\<span class="title">Public</span>\<span class="title">Desktop</span>\</span></span><br></pre></td></tr></table></figure>
+<p>并配置环境变量：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Configuring Environment Paths</span><br><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">setx</span> <span class="title">PATH</span> &quot;<span class="title">C</span>:\<span class="title">Windows</span>;<span class="title">C</span>:\<span class="title">Windows</span>\<span class="title">System32</span>;<span class="title">C</span>:\<span class="title">Applications</span>\<span class="title">mingw64</span>\<span class="title">bin</span>;<span class="title">C</span>:\<span class="title">Applications</span>\<span class="title">jdk</span>-17.0.0.1\<span class="title">bin</span>;<span class="title">C</span>:\<span class="title">Applications</span>\<span class="title">python3112</span>;&quot; /<span class="title">M</span></span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">setx</span> <span class="title">JAVA_HOME</span> &quot;<span class="title">C</span>:\<span class="title">Applications</span>\<span class="title">jdk</span>-17.0.0.1&quot; /<span class="title">M</span></span></span><br></pre></td></tr></table></figure>
+<p>由于各个机房环境变量的设置千奇百怪，有的把 <code>C:\Windows</code> 等系统路径都删除了，因此脚本中全部使用命令的绝对路径，并设置必要的系统环境变量路径（否则 VSCode 在调用 CMD 时会因找不到路径而出错）。</p>
+<p>在摸点机房，实测脚本时，发现如果使用需要安装版本的 Python 进行命令行静默安装，在一个机房中总是会失败。原因似乎是机房的系统本来自带的Python无法通过命令行正确卸载，导致脚本里试图安装的另一个版本也装不上。因此最后决定使用 Python 的 Embed 版本，只需要复制文件并配置环境变量即可。</p>
+<p>关于如何配置 VSCode 便携版，请参考 VSCode 的<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/portable">官方文档</a>。</p>
+<p>关于如何装配 Python Embed 版，可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/557884165">这篇知乎文章</a>。</p>
+<h3 id="创建快捷方式"><a href="#创建快捷方式" class="headerlink" title="创建快捷方式"></a>创建快捷方式</h3><p>我们需要为编写应用创建快捷方式。<br>创建一个 <code>shortcut.bat</code>：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off &amp; <span class="built_in">setlocal</span></span><br><span class="line"><span class="built_in">set</span> arg1=%~<span class="number">1</span></span><br><span class="line"><span class="built_in">set</span> arg2=%~<span class="number">2</span></span><br><span class="line"><span class="built_in">set</span> arg3=%~<span class="number">3</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">defined</span> arg1 <span class="keyword">goto</span> usage</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%arg2%</span>&quot;==&quot;&quot; <span class="built_in">set</span> arg2=Desktop</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%arg3%</span>&quot;==&quot;&quot; <span class="built_in">set</span> arg3=shortcut</span><br><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">mshta</span> <span class="title">VBScript:Execute</span>(&quot;<span class="title">Set</span> <span class="title">a</span>=<span class="title">CreateObject</span>(&quot;&quot;<span class="title">WScript.Shell</span>&quot;&quot;):<span class="title">Set</span> <span class="title">b</span>=<span class="title">a.CreateShortcut</span>(<span class="title">a.SpecialFolders</span>(&quot;&quot;%<span class="title">arg2</span>%&quot;&quot;) &amp; &quot;&quot;\%<span class="title">arg3</span>%.<span class="title">lnk</span>&quot;&quot;):<span class="title">b.TargetPath</span>=&quot;&quot;%<span class="title">arg1</span>%&quot;&quot;:<span class="title">b.WorkingDirectory</span>=&quot;&quot;%~<span class="title">dp0</span>&quot;&quot;:<span class="title">b.Save:close</span>&quot;)</span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">eof</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">:<span class="title">usage</span></span></span><br><span class="line"><span class="function"><span class="title">echo</span> %~<span class="title">n0</span> <span class="title">targetpath</span> [<span class="title">shortcutfolder</span>] [<span class="title">shortcutname</span>]</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">goto</span> :<span class="title">eof</span></span></span><br></pre></td></tr></table></figure>
+<p>然后在环境配置脚本中调用：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Creating Shortcuts</span><br><span class="line"><span class="keyword">call</span> shortcut.bat C:\Applications\VSCode\Code.exe &quot;&quot; &quot;VSCode&quot;</span><br><span class="line"><span class="keyword">call</span> shortcut.bat C:\Applications\DevCpp\devcpp.exe &quot;&quot; &quot;DevCpp&quot;</span><br><span class="line"><span class="keyword">call</span> shortcut.bat C:\Applications\GoogleChromePortable\GoogleChromePortable.exe &quot;&quot; &quot;Chrome&quot;</span><br><span class="line"><span class="built_in">copy</span> &quot;<span class="variable">%USERPROFILE%</span>\Desktop\VSCode.lnk&quot; C:\Users\Public\Desktop</span><br><span class="line"><span class="built_in">copy</span> &quot;<span class="variable">%USERPROFILE%</span>\Desktop\DevCpp.lnk&quot; C:\Users\Public\Desktop</span><br><span class="line"><span class="built_in">copy</span> &quot;<span class="variable">%USERPROFILE%</span>\Desktop\Chrome.lnk&quot; C:\Users\Public\Desktop</span><br></pre></td></tr></table></figure>
+<h3 id="阻止选手访问外网"><a href="#阻止选手访问外网" class="headerlink" title="阻止选手访问外网"></a>阻止选手访问外网</h3><p>使用 Windows 防火墙完成，请根据您服务器的实际 IP 地址调整过滤网段：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Setting up Firewall</span><br><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">netsh</span> <span class="title">advfirewall</span> <span class="title">set</span> <span class="title">allprofiles</span> <span class="title">state</span> <span class="title">on</span></span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">netsh</span> <span class="title">advfirewall</span> <span class="title">firewall</span> <span class="title">add</span> <span class="title">rule</span> <span class="title">name</span>=&quot;<span class="title">oj</span>&quot; <span class="title">dir</span>=<span class="title">out</span> <span class="title">protocol</span>=<span class="title">any</span> <span class="title">action</span>=<span class="title">block</span> <span class="title">remoteip</span>=0.0.0.0-1.1.1.0,1.1.1.2-172.0.0.0,173.0.0.1-192.168.0.0,192.169.0.0-255.255.255.255</span></span><br></pre></td></tr></table></figure>
+<h3 id="阻止选手更改-USB-设备"><a href="#阻止选手更改-USB-设备" class="headerlink" title="阻止选手更改 USB 设备"></a>阻止选手更改 USB 设备</h3><p>看情况设置。有的时候会带来一些麻烦，比如 USB 鼠标键盘线松了再插回去就不识别了。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Disabling USB Stor</span><br><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">reg</span> <span class="title">add</span> <span class="title">HKEY_LOCAL_MACHINE</span>\<span class="title">SYSTEM</span>\<span class="title">CurrentControlSet</span>\<span class="title">Services</span>\<span class="title">UsbStor</span> /<span class="title">v</span> <span class="title">Start</span> /<span class="title">t</span> <span class="title">REG_DWORD</span> /<span class="title">d</span> 4 /<span class="title">f</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="创建选手用户"><a href="#创建选手用户" class="headerlink" title="创建选手用户"></a>创建选手用户</h3><p>创建一个名为 Contestent 的普通用户，为其他账户设置密码：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Configuring Users</span><br><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">net</span> <span class="title">user</span> <span class="title">administrator</span>  /<span class="title">active:yes</span></span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">net</span> <span class="title">user</span> <span class="title">Administrator</span> <span class="title">a_strong_password</span></span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">net</span> <span class="title">user</span> %<span class="title">USERNAME</span>% <span class="title">a_strong_password</span></span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">net</span> <span class="title">user</span> <span class="title">Guest</span> /<span class="title">active:yes</span></span></span><br><span class="line"><span class="function"><span class="title">C</span>:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">net</span> <span class="title">user</span> <span class="title">Contestent</span> /<span class="title">add</span></span></span><br></pre></td></tr></table></figure>
+<p>由于有的电脑默认登陆的是 Administrator，还有部分机房是 Lenovo 之类的用户名，因此两个账户都设置密码。</p>
+<p>配置完成后，手工切换到参赛选手账户。</p>
+<h3 id="赛中的故障处理"><a href="#赛中的故障处理" class="headerlink" title="赛中的故障处理"></a>赛中的故障处理</h3><h4 id="一般故障处置"><a href="#一般故障处置" class="headerlink" title="一般故障处置"></a>一般故障处置</h4><p>比赛中难免因为拉扯鼠标、键盘导致 USB 线松动，这个时候我们的解决方案是工作人员暂时切回管理员账户，启用 USB 识别键鼠后再封禁切回比赛选手账户。</p>
+<p>启用 USB 的指令：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">reg</span> <span class="title">add</span> <span class="title">HKEY_LOCAL_MACHINE</span>\<span class="title">SYSTEM</span>\<span class="title">CurrentControlSet</span>\<span class="title">Services</span>\<span class="title">UsbStor</span> /<span class="title">v</span> <span class="title">Start</span> /<span class="title">t</span> <span class="title">REG_DWORD</span> /<span class="title">d</span> 3 /<span class="title">f</span></span></span><br></pre></td></tr></table></figure>
+<p>禁用防火墙的指令：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">windows</span>\<span class="title">system32</span>\<span class="title">netsh</span> <span class="title">advfirewall</span> <span class="title">set</span> <span class="title">allprofiles</span> <span class="title">state</span> <span class="title">off</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="准备冗余机位"><a href="#准备冗余机位" class="headerlink" title="准备冗余机位"></a>准备冗余机位</h4><p>有时，可能出现选手机中场无法使用的情况，可以提前准备几台额外的选手机作为冗余。当遇到无法及时解决的电脑故障时，切换到备用的机位。</p>
+<h1 id="准备比赛"><a href="#准备比赛" class="headerlink" title="准备比赛"></a>准备比赛</h1><p>一般来说，校赛一般会分为热身赛和正式赛两场。每场比赛开始前，您需要做一些准备工作。</p>
+<h2 id="下发测试数据"><a href="#下发测试数据" class="headerlink" title="下发测试数据"></a>下发测试数据</h2><p>这个环结主要是将比赛题目的测试数据提前发送到各个 judgehost，需要占用较高的网络带宽。这可以加速比赛开始后各个题目的评测。</p>
+<p>您可以从对应的比赛页面，选择 “Heat up judgehosts with contest data” 进行评测预热。</p>
+<div class="note info flat"><p>此时需要通过网络传输大量数据，可能会有 judgehost 出现掉线的现象，但这无需担心：在拉取完评测数据后，judgehost 会恢复正常的上线状态。</p>
+</div>
+<h2 id="激活比赛"><a href="#激活比赛" class="headerlink" title="激活比赛"></a>激活比赛</h2><p>比赛开始前，请确保在 DOMjudge 网页中激活（activate）相应的比赛。</p>
+<h2 id="检查打印"><a href="#检查打印" class="headerlink" title="检查打印"></a>检查打印</h2><p>打印是外部系统，并且一般由技术人员的电脑负责从网络接受打印请求。请务必记得在此时启动您的打印服务器&#x2F;xcpc-tools.</p>
+<p>此外，连接校园网的电脑的 IP 一般不是固定的，也许会在重新连接网络后发生地址变动。如有这种情况，请及时更改打印脚本中配置的网络地址。</p>
+<p>您可以从 DOMjudge Jury Interface &#x2F; Print 页面中选择一个文件尝试打印，以测试系统打印是否正常工作。</p>
+<h2 id="配置-icpctools"><a href="#配置-icpctools" class="headerlink" title="配置 icpctools"></a>配置 icpctools</h2><p><a target="_blank" rel="noopener" href="https://tools.icpc.global/">icpctools</a> 包括多个部分，本文只会用到 CDS (Contest Data Server), Presentation Admin, Presentation Client 以及 Resolver 几个部分。</p>
+<p>在比赛开始前的准备阶段，我们需要先启动 CDS, 并在所需的显示屏上使用正确的配置打开 Presentation Client. 这样，我们稍后可以使用 Presentation Admin 工具设置各个显示屏的展示内容，例如倒计时、榜单、评测队列等。</p>
+<p>请先从 icpctools 的 <a target="_blank" rel="noopener" href="https://github.com/icpctools/icpctools/releases">GitHub Releases</a>下载符合您 CDS 版本的各种工具备用。</p>
+<div class="note info flat"><p>点击对应版本的 Assets 可以看到各种工具的下载列表。一般来说，您只需下载对应工具的 <code>.zip</code> 后缀的压缩包即可。</p>
+</div>
+<h3 id="启动-CDS"><a href="#启动-CDS" class="headerlink" title="启动 CDS"></a>启动 CDS</h3><p>前面我们已经创建了一个用于 CDS 的 <code>docker-compose.yml</code>，现在请将 DOMjudge 中对应比赛的 ID 替换文件中的 <code>$cid</code> 变量。然后，在存放该文件的路径下执行指令将其启动。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker compose up -d</span><br></pre></td></tr></table></figure>
+<p>如果您之前已经让它为其他比赛服务过（例如正式赛时，已在热身赛启动过 CDS），建议您首先应停止并销毁先前的 CDS 实例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker compose down</span><br></pre></td></tr></table></figure>
+<p>如果 CDS 配置无误，则稍后您可以通过 <code>https://服务器IP:8443</code> 访问 CDS 的管理页面。您可以使用您先前在 <code>accounts.yaml</code> 中配置的 admin 账号进行登录。</p>
+<h3 id="启动-Presentation"><a href="#启动-Presentation" class="headerlink" title="启动 Presentation"></a>启动 Presentation</h3><p>这一步需要在各个需要展示的电脑上运行 Presentation Client, 以启动显示板。您必须确保这些电脑可以通过网络连接到 CDS.</p>
+<h4 id="编写脚本启动"><a href="#编写脚本启动" class="headerlink" title="编写脚本启动"></a>编写脚本启动</h4><p>Presentation Client 本身已带一个 client.bat，但是我们需要做一些额外工作将其启动。</p>
+<p>BAT 文件首先设置 <code>ICPC_FONT</code> 环境变量，否则默认的内置字体无法正常显示中文。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> ICPC_FONT=&quot;Microsoft Yahei&quot;</span><br></pre></td></tr></table></figure>
+<p>然后使用 client.bat 启动 Presentation Client，命令格式为：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\client.bat &lt;CDS地址&gt; &lt;账号&gt; &lt;密码&gt; [其他选项]</span><br></pre></td></tr></table></figure>
+<p>账号密码请使用 <code>accounts.yaml</code> 中配置的 presentation 账户的账号密码。不要使用其他账户，以免排行榜展示出现问题。</p>
+<p>例如，您的 CDS 运行在 192.168.1.233 的 8443 端口上，比赛的 ID 为 3，则您可以使用以下脚本启动：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> ICPC_FONT=&quot;Microsoft Yahei&quot;</span><br><span class="line">.\client.bat https://<span class="number">192</span>.<span class="number">168</span>.<span class="number">1</span>.<span class="number">233</span>:<span class="number">8443</span>/api/contests/<span class="number">3</span>/ presentation your_password</span><br></pre></td></tr></table></figure>
+<div class="note info flat"><p>如果您使用 PowerShell (<code>.ps1</code> 脚本)，则您应使用 <code>$env:ICPC_FONT=&quot;Microsoft Yahei&quot;</code> 语句设置 <code>ICPC_FONT</code> 环境变量。</p>
+</div>
+<p>有时，用于展示的电脑连接了多个屏幕，这时您可以使用 <code>--display</code> 选项指定目标显示屏的序号，例如：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\client.bat https://cds presentation your_password --display <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>还有其他的选项，请参考 <a target="_blank" rel="noopener" href="https://tools.icpc.global/docs/PresentationClient.pdf">Presentation Client 文档</a></p>
+<h4 id="检查-Java-环境"><a href="#检查-Java-环境" class="headerlink" title="检查 Java 环境"></a>检查 Java 环境</h4><p>Presentation Client 运行需要 Java 环境，请先测试目标机器上的 <code>java</code> 指令是否存在。</p>
+<p>如果不存在，您可以下载一个 OpenJDK 并解压，然后配置系统的 <code>Path</code> 和 <code>JAVA_HOME</code> 等环境变量。</p>
+<div class="note info flat"><p>icpctools 目前使用 JDK 17 构建。OpenJDK 17 已经标记为 Archived, 但您仍可以在 <a target="_blank" rel="noopener" href="https://jdk.java.net/archive/">Archived Releases</a> 下载它。</p>
+</div>
+<h4 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h4><p>将您上面编写的脚本保存为 <code>start.bat</code>，和 <code>client.bat</code> 放在同一目录下。</p>
+<p>这样您在将 Presentation Client 拷贝到电脑上后可以直接双击 <code>start.bat</code> 文件启动。您可以根据需要在每台电脑上调整脚本的内容，例如有时您需要使用选项指定 Client 的名称，以便在控制时区分不同的显示屏，否则他们在管理端将显示自己的 IP 地址。</p>
+<p>启动 Presentation Client 需要一定时间，会在运行 bat 后卡一会儿，请耐心等待。<br>如果长时间未出现展示工具，或者一段时间后工具自行退出，请检查 logs 文件夹下的日志，查看是否发生了错误。</p>
+<h3 id="启动-Presentation-Admin"><a href="#启动-Presentation-Admin" class="headerlink" title="启动 Presentation Admin"></a>启动 Presentation Admin</h3><p>Presentation Admin 工具一般启动在技术&#x2F;管理人员的电脑上，请确保您的电脑可以访问 CDS.</p>
+<p>在 presentationAdmin 的目录下，使用以下指令启动：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\presAdmin.bat &lt;CDS地址&gt; &lt;账号&gt; &lt;密码&gt;</span><br></pre></td></tr></table></figure>
+<p>此处的账号密码使用前面 <code>accounts.yaml</code> 中配置的 presAdmin 账号。CDS 地址和前面 Presentation Client 启动时的一致。</p>
+<p>启动 Presentation Admin 后，界面左侧会显示已连接的 Presentation Client 的转播画面。界面右侧是可以选择的展示内容，您可以将展示内容拖动到左侧的显示屏中以更改指定显示屏的展示内容。</p>
+<p>您可以在比赛中随时调整显示屏的内容，便于在场选手了解比赛开始时间、当前榜单状态等信息。</p>
+<h1 id="比赛中"><a href="#比赛中" class="headerlink" title="比赛中"></a>比赛中</h1><p>比赛中除了解决故障以外，一般不会有太多的技术工作。</p>
+<h2 id="监控系统状况"><a href="#监控系统状况" class="headerlink" title="监控系统状况"></a>监控系统状况</h2><ul>
+<li>检测评测压力，如果评测队列一直过长，请考虑添加评测机（但比赛签到阶段队列稍微长一些是正常的）</li>
+<li>留意评测机是否有异常，评测结果是否有异常，及时重启故障评测机</li>
+<li>关注打印机、小票机的纸张情况，及时添纸和更换纸卷</li>
+</ul>
+<h2 id="处理-Clarifications"><a href="#处理-Clarifications" class="headerlink" title="处理 Clarifications"></a>处理 Clarifications</h2><p>这个一般交给各个题目的出题人回复。可以创建一个专用的 Jury 权限账户，分发给各个裁判进行 Clarifications 的回复。</p>
+<h2 id="处理题目变更"><a href="#处理题目变更" class="headerlink" title="处理题目变更"></a>处理题目变更</h2><p>一般题目的评测数据在开赛前就已经确定了，但是不免会有题目数据&#x2F;标答出锅的情况，这时需要修正题目数据并重测先前被判定为未通过的提交。</p>
+<h3 id="修正题目"><a href="#修正题目" class="headerlink" title="修正题目"></a>修正题目</h3><p>从 Jury Interface &#x2F; Problems 进去找到需要修改的题目，点击 Edit, 拉到最下面重新导入新的题目包，记得选择题目对应的比赛。<br><img src="/img/posts/xcpc-campus-contest-technically/update-problem.png" alt="Update Problem"></p>
+<h3 id="进行重测"><a href="#进行重测" class="headerlink" title="进行重测"></a>进行重测</h3><p>在 rejudgings 页面点击 Add new rejuding，选择重测范围，然后点击 Save 进行范围重测。<br><img src="/img/posts/xcpc-campus-contest-technically/rejudgings.png" alt="Rejudgings"><br>重测后，结果不会立即生效，而是需要在对应重测页面确认应用重测的结果，才会生效。</p>
+<h3 id="调整展示内容"><a href="#调整展示内容" class="headerlink" title="调整展示内容"></a>调整展示内容</h3><p>比赛中可以使用 Presentation Admin 调整各个显示器的展示内容。临近比赛结束时，可以将展示内容更改为比赛的剩余时间。</p>
+<h2 id="附件的发放"><a href="#附件的发放" class="headerlink" title="附件的发放"></a>附件的发放</h2><p>有时在开赛后需要发送额外的电子附件，但是又没有配置其他的服务器，可以选择一道赛题，添加附件供参赛选手下载。不建议发送很大的附件。</p>
+<h1 id="比赛后"><a href="#比赛后" class="headerlink" title="比赛后"></a>比赛后</h1><h2 id="关闭代码提交"><a href="#关闭代码提交" class="headerlink" title="关闭代码提交"></a>关闭代码提交</h2><p>比赛结束后，可以选择关闭提交功能。关闭后，选手将不能继续提交（默认情况下，选手可以继续提交，但不计入排行，也无法看到评测结果）。<br><img src="/img/posts/xcpc-campus-contest-technically/disable-submit.png" alt="Disable Submit"></p>
+<h2 id="finalize-比赛"><a href="#finalize-比赛" class="headerlink" title="finalize 比赛"></a>finalize 比赛</h2><p>确认比赛结果不会再产生变更后，在 DOMjudge 的对应比赛页面点击 finalize，表示比赛不再更新。</p>
+<h2 id="配置奖项"><a href="#配置奖项" class="headerlink" title="配置奖项"></a>配置奖项</h2><p>下载 icpctools 中的 resolver 工具，双击 <code>awards.bat</code> 启动奖项配置工具，出现下图界面：<br><img src="/img/posts/xcpc-campus-contest-technically/awards-connect.png" alt="Awards Connect"><br>URL 输入和前面 Presentation 一样的网址，输入 <code>accounts.yaml</code> 中配置的 admin 账号密码进行连接。连接后可以对队伍的奖项进行可视化配置。配置完成后，请点击 Upload 上传奖项设置。</p>
+<div class="note info flat"><p>有时，Awards 工具会提示 “Contest not done updating”，此时可以尝试进入网页 CDS，选择 “End update” 后再配置奖项。</p>
+</div>
+<div class="note info flat"><p>如果在线配置不成功，或者有离线滚榜需求也可以参考 <a target="_blank" rel="noopener" href="https://github.com/cn-xcpc-tools/cn-xcpc-docs/blob/master/resolver.md">cn-xcpc-tools的说明</a> 导出 Event Feed, 进行离线奖项配置。</p>
+</div>
+<h2 id="滚榜"><a href="#滚榜" class="headerlink" title="滚榜"></a>滚榜</h2><p>滚榜用的电脑需要 Java 环境，并且也需要提前设置字体，请在 resolver 的目录打开终端，先设置字体。</p>
+<p>如果终端是命令提示符，请执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> ICPC_FONT=<span class="string">&quot;Microsoft Yahei&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果终端是 PowerShell，请执行：</p>
+<figure class="highlight ps1"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$env:ICPC_FONT</span>=<span class="string">&quot;Microsoft Yahei&quot;</span></span><br></pre></td></tr></table></figure>
+<p>然后启动 resolver, 账密使用 admin 账户:</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\resolver.bat &lt;CDS地址&gt; &lt;账号&gt; &lt;密码&gt;</span><br></pre></td></tr></table></figure>
+<p>等待 resolver 启动完成，即可开始滚榜。</p>
+<div class="note warning flat"><p>请务必提前在用于滚榜的电脑上测试是否可以正常走完滚榜的全流程。<br>如果队伍数较多，请更改 <code>resolver.bat</code> 中的 JVM 内存大小设置，确保 Java 虚拟机有充足的内存！默认配置为 <code>-Xmx1024m</code> 即 1024MB.</p>
+</div>
+<h2 id="解冻榜单（可选）"><a href="#解冻榜单（可选）" class="headerlink" title="解冻榜单（可选）"></a>解冻榜单（可选）</h2><p>在结果公布完毕之后，您可以从 DOMjudge 在 Contest 页面中点击 unfreeze 解冻榜单，这样公共榜单上将会显示最终的结果。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.rosemoe.cyou">Rosemoe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.rosemoe.cyou/2025/06/08/xcpc-campus-contest-technically/">https://blog.rosemoe.cyou/2025/06/08/xcpc-campus-contest-technically/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.rosemoe.cyou" target="_blank">Rosemoe的小博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/XCPC/">XCPC</a><a class="post-meta__tags" href="/tags/DOMjudge/">DOMjudge</a></div><div class="post_share"><div class="social-share" data-image="/img/default_cover/4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img class="cover" src="/img/default_cover/5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Codeforces比赛中的unordered_map Hacks</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Rosemoe</div><div class="author-info__description">A lazy Android developer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Rosemoe"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Rosemoe" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="javascript:copyEmail();" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到Rosemoe的小博客~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%A1%E8%B5%9B%E6%8A%80%E6%9C%AF%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">校赛技术环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AF%87%E5%86%85%E5%AE%B9%E7%9A%84%E6%9C%AC%E5%9C%B0-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">本篇内容的本地&#x2F;服务器环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E9%9C%80%E8%A6%81%E7%9A%84%E7%9F%A5%E8%AF%86-%E8%83%BD%E5%8A%9B"><span class="toc-number">1.3.</span> <span class="toc-text">阅读需要的知识&#x2F;能力</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%94%E8%B5%9B%E5%89%8D"><span class="toc-number">2.</span> <span class="toc-text">比赛前</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E6%AF%94%E8%B5%9B%E8%AF%84%E6%B5%8B%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.1.</span> <span class="toc-text">搭建比赛评测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%9C%BA%E5%99%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">选择机器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%BA%E5%99%A8%E7%8E%AF%E5%A2%83"><span class="toc-number">2.1.2.</span> <span class="toc-text">配置机器环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">操作系统环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">连接到服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-cgroup"><span class="toc-number">2.1.2.3.</span> <span class="toc-text">配置 cgroup</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Docker-Docker-Compose"><span class="toc-number">2.1.3.</span> <span class="toc-text">安装 Docker &amp; Docker Compose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%92%8C%E5%90%AF%E5%8A%A8-Docker-%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.4.</span> <span class="toc-text">配置和启动 Docker 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%AF%84%E6%B5%8B%E7%B3%BB%E7%BB%9F%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.4.1.</span> <span class="toc-text">编写评测系统容器配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-domserver"><span class="toc-number">2.1.4.2.</span> <span class="toc-text">启动 domserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-judgehost"><span class="toc-number">2.1.4.3.</span> <span class="toc-text">启动 judgehost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA-CDS-%E5%88%9B%E5%BB%BA-DOMjudge-%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.1.4.4.</span> <span class="toc-text">为 CDS 创建 DOMjudge 账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99CDS%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.4.5.</span> <span class="toc-text">编写CDS容器配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%84%E6%B5%8B%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.</span> <span class="toc-text">配置评测系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AF%BC%E5%85%A5%E5%90%84%E7%B1%BB-JSON-%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.1.</span> <span class="toc-text">如何导入各类 JSON 数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AD%A6%E6%A0%A1%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.2.</span> <span class="toc-text">导入学校信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E9%98%9F%E4%BC%8D%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.3.</span> <span class="toc-text">导入队伍信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E9%98%9F%E4%BC%8D%E8%B4%A6%E5%8F%B7"><span class="toc-number">2.2.4.</span> <span class="toc-text">导入队伍账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E9%A2%98%E7%9B%AE"><span class="toc-number">2.2.5.</span> <span class="toc-text">导入题目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP-%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F%E8%B6%85%E9%99%90-%E7%88%86%E5%86%85%E5%AD%98%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-number">2.2.5.1.</span> <span class="toc-text">PHP 上传大小超限&#x2F;爆内存的处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E8%AF%84%E6%B5%8B%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.6.</span> <span class="toc-text">调整评测设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%AF%94%E8%B5%9B"><span class="toc-number">2.2.7.</span> <span class="toc-text">创建比赛</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%89%93%E5%8D%B0"><span class="toc-number">2.3.</span> <span class="toc-text">配置打印</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%B5%9B%E9%A2%98"><span class="toc-number">2.4.</span> <span class="toc-text">测试赛题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%80%89%E6%89%8B%E6%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">2.5.</span> <span class="toc-text">配置选手机环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83-%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">2.5.1.</span> <span class="toc-text">环境&#x2F;软件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">2.5.2.</span> <span class="toc-text">创建快捷方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E9%80%89%E6%89%8B%E8%AE%BF%E9%97%AE%E5%A4%96%E7%BD%91"><span class="toc-number">2.5.3.</span> <span class="toc-text">阻止选手访问外网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E6%AD%A2%E9%80%89%E6%89%8B%E6%9B%B4%E6%94%B9-USB-%E8%AE%BE%E5%A4%87"><span class="toc-number">2.5.4.</span> <span class="toc-text">阻止选手更改 USB 设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%80%89%E6%89%8B%E7%94%A8%E6%88%B7"><span class="toc-number">2.5.5.</span> <span class="toc-text">创建选手用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%9B%E4%B8%AD%E7%9A%84%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86"><span class="toc-number">2.5.6.</span> <span class="toc-text">赛中的故障处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%95%85%E9%9A%9C%E5%A4%84%E7%BD%AE"><span class="toc-number">2.5.6.1.</span> <span class="toc-text">一般故障处置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%86%97%E4%BD%99%E6%9C%BA%E4%BD%8D"><span class="toc-number">2.5.6.2.</span> <span class="toc-text">准备冗余机位</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%AF%94%E8%B5%9B"><span class="toc-number">3.</span> <span class="toc-text">准备比赛</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E5%8F%91%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE"><span class="toc-number">3.1.</span> <span class="toc-text">下发测试数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E6%AF%94%E8%B5%9B"><span class="toc-number">3.2.</span> <span class="toc-text">激活比赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%89%93%E5%8D%B0"><span class="toc-number">3.3.</span> <span class="toc-text">检查打印</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-icpctools"><span class="toc-number">3.4.</span> <span class="toc-text">配置 icpctools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-CDS"><span class="toc-number">3.4.1.</span> <span class="toc-text">启动 CDS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-Presentation"><span class="toc-number">3.4.2.</span> <span class="toc-text">启动 Presentation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC%E5%90%AF%E5%8A%A8"><span class="toc-number">3.4.2.1.</span> <span class="toc-text">编写脚本启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5-Java-%E7%8E%AF%E5%A2%83"><span class="toc-number">3.4.2.2.</span> <span class="toc-text">检查 Java 环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="toc-number">3.4.2.3.</span> <span class="toc-text">运行脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-Presentation-Admin"><span class="toc-number">3.4.3.</span> <span class="toc-text">启动 Presentation Admin</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%94%E8%B5%9B%E4%B8%AD"><span class="toc-number">4.</span> <span class="toc-text">比赛中</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E7%8A%B6%E5%86%B5"><span class="toc-number">4.1.</span> <span class="toc-text">监控系统状况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86-Clarifications"><span class="toc-number">4.2.</span> <span class="toc-text">处理 Clarifications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E9%A2%98%E7%9B%AE%E5%8F%98%E6%9B%B4"><span class="toc-number">4.3.</span> <span class="toc-text">处理题目变更</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%AD%A3%E9%A2%98%E7%9B%AE"><span class="toc-number">4.3.1.</span> <span class="toc-text">修正题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%B5%8B"><span class="toc-number">4.3.2.</span> <span class="toc-text">进行重测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%B1%95%E7%A4%BA%E5%86%85%E5%AE%B9"><span class="toc-number">4.3.3.</span> <span class="toc-text">调整展示内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E4%BB%B6%E7%9A%84%E5%8F%91%E6%94%BE"><span class="toc-number">4.4.</span> <span class="toc-text">附件的发放</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%94%E8%B5%9B%E5%90%8E"><span class="toc-number">5.</span> <span class="toc-text">比赛后</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4"><span class="toc-number">5.1.</span> <span class="toc-text">关闭代码提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#finalize-%E6%AF%94%E8%B5%9B"><span class="toc-number">5.2.</span> <span class="toc-text">finalize 比赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%A5%96%E9%A1%B9"><span class="toc-number">5.3.</span> <span class="toc-text">配置奖项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E6%A6%9C"><span class="toc-number">5.4.</span> <span class="toc-text">滚榜</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%BB%E6%A6%9C%E5%8D%95%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">解冻榜单（可选）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img src="/img/default_cover/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"/></a><div class="content"><a class="title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img src="/img/default_cover/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"/></a><div class="content"><a class="title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img src="/img/default_cover/17.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"/></a><div class="content"><a class="title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/24/atcoder-abc311/" title="AtCoder Beginner Contest 311 A-E 题解"><img src="/img/default_cover/10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 311 A-E 题解"/></a><div class="content"><a class="title" href="/2023/07/24/atcoder-abc311/" title="AtCoder Beginner Contest 311 A-E 题解">AtCoder Beginner Contest 311 A-E 题解</a><time datetime="2023-07-24T07:23:33.000Z" title="发表于 2023-07-24 15:23:33">2023-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/23/atcoder-abc310/" title="AtCoder Beginner Contest 310 A-F 题解"><img src="/img/default_cover/13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 310 A-F 题解"/></a><div class="content"><a class="title" href="/2023/07/23/atcoder-abc310/" title="AtCoder Beginner Contest 310 A-F 题解">AtCoder Beginner Contest 310 A-F 题解</a><time datetime="2023-07-23T13:34:35.000Z" title="发表于 2023-07-23 21:34:35">2023-07-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Rosemoe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">にゃん~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async src="/js/sideloaded.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="にゃん~,喵~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
