@@ -12,16 +12,120 @@
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Auto.js">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rosemoe.cyou/img/posts/image-to-qq-painting/cover.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://blog.rosemoe.cyou/img/posts/image-to-qq-painting/cover.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "👴玩爆QQ涂鸦",
+  "url": "https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/",
+  "image": "https://blog.rosemoe.cyou/img/posts/image-to-qq-painting/cover.jpg",
+  "datePublished": "2020-10-30T09:57:33.000Z",
+  "dateModified": "2025-10-18T08:22:22.883Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Rosemoe",
+      "url": "https://blog.rosemoe.cyou"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -37,16 +141,14 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  lightbox: 'https://fancyapps.com/fancybox/',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
+  islazyloadPlugin: false,
   isAnchor: true,
   percent: {
     toc: true,
@@ -55,117 +157,10 @@
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: '👴玩爆QQ涂鸦',
-  isPost: true,
-  isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-10-18 16:22:22',
-  highlightLangExpand: 'null',
-  highlightLangCollapse: 'cpp'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/posts/image-to-qq-painting/cover.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Rosemoe的小博客"><span class="site-name">Rosemoe的小博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">👴玩爆QQ涂鸦</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-30T09:57:33.000Z" title="发表于 2020-10-30 17:57:33">2020-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-18T08:22:22.883Z" title="更新于 2025-10-18 16:22:22">2025-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%B2%E8%B0%88/">闲谈</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="👴玩爆QQ涂鸦"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>最近逛b站时发现一个宝藏up主：鉴无虚发QQ涂鸦（uid402778937），他利用QQ不久前更新的涂鸦功能进行创作，绘制了许多有趣的涂鸦，还让粉丝群的成员发送一张图 片，他照着画出来。这让我很羡慕，可是我美术不行，加之用手机画画实在不是一键容易的事，手指太粗，屏幕太小，据up自述，完成一件创造大约需要30min，这让我这个急性子更难受。不过我会一点编程，于是想尝试写一个简单的程序来实现此功能。<br><img src="/img/posts/image-to-qq-painting/up.png" alt="Up"><br><img src="/img/posts/image-to-qq-painting/img_0.png" alt="Chat Screenshot 1"><br><img src="/img/posts/image-to-qq-painting/img_1.png" alt="Chat Screenshot 2"></p>
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/posts/image-to-qq-painting/cover.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Rosemoe的小博客</span></a><a class="nav-page-title" href="/"><span class="site-name">👴玩爆QQ涂鸦</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">👴玩爆QQ涂鸦</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-30T09:57:33.000Z" title="发表于 2020-10-30 17:57:33">2020-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-18T08:22:22.883Z" title="更新于 2025-10-18 16:22:22">2025-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%B2%E8%B0%88/">闲谈</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>最近逛b站时发现一个宝藏up主：鉴无虚发QQ涂鸦（uid402778937），他利用QQ不久前更新的涂鸦功能进行创作，绘制了许多有趣的涂鸦，还让粉丝群的成员发送一张图 片，他照着画出来。这让我很羡慕，可是我美术不行，加之用手机画画实在不是一键容易的事，手指太粗，屏幕太小，据up自述，完成一件创造大约需要30min，这让我这个急性子更难受。不过我会一点编程，于是想尝试写一个简单的程序来实现此功能。<br><img src="/img/posts/image-to-qq-painting/up.png" alt="Up"><br><img src="/img/posts/image-to-qq-painting/img_0.png" alt="Chat Screenshot 1"><br><img src="/img/posts/image-to-qq-painting/img_1.png" alt="Chat Screenshot 2"></p>
 <h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>自己使用的手机用的安卓系统，安卓在安卓7.0（Nougat）为辅助功能（AccessibilityService）添加了</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boolean <span class="title function_">dispatchGesture</span><span class="params">(gesture: GestureDescription, callback: AccessibilityService.GestureResultCallback?, handler: Handler?)</span></span><br></pre></td></tr></table></figure>
 <p>来在触摸屏上执行一个手势。<br>我们可以利用这个方法来实现涂鸦的功能。不过原生安卓开发很麻烦，受时间限制，采取跨平台的Auto.js来编写js脚本实现。<br>我把步骤分为两步<br>1读取图片并出来成类似简笔画的效果<br>2在屏幕上画出来</p>
@@ -178,39 +173,78 @@
 </ul>
 <h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>我一开始处理出来是这种黑白图:<br><img src="/img/posts/image-to-qq-painting/img_3.jpg" alt="Old Image"><br>实际上效果不太好,现在处理出来的图片绘制效果就很棒:<br><img src="/img/posts/image-to-qq-painting/img_2.png" alt="New Image"><br>最终绘制出的涂鸦如下:<br><img src="/img/posts/image-to-qq-painting/img_4.jpg" alt="Effect">   </p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>我们写完上面的代码，测试了效果，发现想要实现这个功能一点儿也不难。只要我们愿意做，没有什么是做不到的。<br>同时我们也能发现脚本实际上还是有提升的空间的。<br>QQ的涂鸦是支持彩色的（如下图颜色选择器），而我们的脚本现在只有单一的颜色，画面是不是展现得不如彩色的涂鸦生动呢？<br><img src="/img/posts/image-to-qq-painting/img_5.png" alt="Color Picker Screenshot"><br>实际上，脚本理论也可以模拟进行颜色的选择，我们将在将来对脚本进行改进，使得涂鸦更具有表现力。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.rosemoe.cyou">Rosemoe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/">https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.rosemoe.cyou" target="_blank">Rosemoe的小博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/Auto-js/">Auto.js</a></div><div class="post_share"><div class="social-share" data-image="/img/posts/image-to-qq-painting/cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/22/editor-get-started/" title="Sora-editor - Get started"><img class="cover" src="/img/posts/editor-get-started/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Sora-editor - Get started</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处"><img class="cover" src="/img/posts/what-is-slow-in-text-warrior/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Text Warrior中一些不足之处</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Rosemoe</div><div class="author-info__description">A lazy Android developer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Rosemoe"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Rosemoe" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="javascript:copyEmail();" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到Rosemoe的小博客~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">作业</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.2.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">图片处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E7%BB%98%E5%88%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">模拟绘制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">1.2.4.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解"><img src="/img/posts/csu-programming-test-2025-2/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中南大学2025年第二批预推免机试题解"/></a><div class="content"><a class="title" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解">中南大学2025年第二批预推免机试题解</a><time datetime="2025-10-18T02:28:34.000Z" title="发表于 2025-10-18 10:28:34">2025-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘"><img src="/img/posts/replay-on-a-network-problem-in-contest/cover.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校赛防火墙配置导致比赛机器断网问题复盘"/></a><div class="content"><a class="title" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘">校赛防火墙配置导致比赛机器断网问题复盘</a><time datetime="2025-07-05T09:44:10.000Z" title="发表于 2025-07-05 17:44:10">2025-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img src="/img/posts/xcpc-campus-contest-technically/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"/></a><div class="content"><a class="title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img src="/img/posts/codeforces-hacks-on-unordered-map/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"/></a><div class="content"><a class="title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img src="/img/posts/codeforces-888/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"/></a><div class="content"><a class="title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Rosemoe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">にゃん~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      tags: 'ams'
-    },
-    chtml: {
-      scale: 1.1
-    },
-    options: {
-      renderActions: {
-        findScript: [10, doc => {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/)
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-            const text = document.createTextNode('')
-            node.parentNode.replaceChild(text, node)
-            math.start = {node: text, delim: '', n: 0}
-            math.end = {node: text, delim: '', n: 0}
-            doc.math.push(math)
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.rosemoe.cyou">Rosemoe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/">https://blog.rosemoe.cyou/2020/10/30/image-to-qq-painting/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.rosemoe.cyou" target="_blank">Rosemoe的小博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/Auto-js/">Auto.js</a></div><div class="post-share"><div class="social-share" data-image="/img/posts/image-to-qq-painting/cover.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/08/22/editor-get-started/" title="Sora-editor - Get started"><img class="cover" src="/img/posts/editor-get-started/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Sora-editor - Get started</div></div><div class="info-2"><div class="info-item-1">PreThe project is fast-moving. This page may not be updated in time. The content of this page may be invalid for newest editor versions. Introductionsora-editor is a optimized editor library with a lot of features on Android.It aims at making more people able to develop their own IDEs with less efforts. Also developing the editor is part of the interest of mine.However its license is LGPL v2.1. Be careful about that.As it is still developing and being tested, there may be some bugs and APIs c...</div></div></div></a><a class="pagination-related" href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处"><img class="cover" src="/img/posts/what-is-slow-in-text-warrior/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Text Warrior中一些不足之处</div></div><div class="info-2"><div class="info-item-1">前言不少Android项目中，都使用了Text Warrior作为它们的代码编辑器。这个项目的视图是直接继承自View的，与那些继承TextView、EditText的项目不同。使用TextView，我们虽然能够获得较为出色的显示效果，但是在文本较长的时候，会造成卡顿阻碍用户输入，因为我们不得不在主线程中更新我们的Spans，而且每更新一个Span，都会导致TextView重绘。而且经常因为正则表达式不够准确而导致高亮出错。TextWarrior则没有此问题。它收到文本更新的时候，会调用其他线程启动Lexer来刷新高亮，在该线程结束之后刷新绘制，这既保证了高亮的正确性，也保证了UI线程的流畅。然而，它其中有一些不足之处导致大文本仍然不能较快地显示，以及一些用户体验的问题。    绘制问题Span查找问题TextWarrior的Span是用ArrayList，依照顺序依次存起来的，Span中保存了它的Start Index。利用有序的性质，我们可以很快地利用二分将特定Index对应的Span找出来。尤其是在绘制时，这十分有用，直接将O（N）复杂的降到O（log N），很快。但是，目...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/04/25/android-dev-mistake/" title="记Android开发中一个坑 - ViewRootImpl"><img class="cover" src="/img/posts/android-dev-mistake/cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-25</div><div class="info-item-2">记Android开发中一个坑 - ViewRootImpl</div></div><div class="info-2"><div class="info-item-1">玩Android开发已经两年有余了，一直保持这一些错误思想，终于在前几天给打破了。作为一个开发老者，你一定看过这样的报错： 12android.view.ViewImple$CalledFromWrongThreadException:Only the original thread that created a view hierarchy can touch its views.at android.view.ViewImple.checkThread(ViewImpl.java:xxx) 毫无疑问，八成是你在别的线程尝试对UI进行更新。我们常说那是UI线程之外的线程。但是，为什么报错不是UI thread，而是original呢?我觉得,大多数人都没有想过.前几天看到一篇文章,把我的错误观念打爆了,所以今天记录一下.先来看看checkThread()方法: 123456void checkThread() &#123;       if (mThread != Thread.currentThread()) &#123;           throw new Called...</div></div></div></a><a class="pagination-related" href="/2021/10/02/android-render-node-using/" title="使用Android RenderNode加速绘制"><img class="cover" src="/img/posts/android-render-node-using/cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-02</div><div class="info-item-2">使用Android RenderNode加速绘制</div></div><div class="info-2"><div class="info-item-1">写在前面的废话研究RenderNode的起因…作为一个代码编辑器的开发者，我十分关注我写的View的绘制速度。于是国庆节放假，心血来潮测试自己编辑器和EditText绘制的性能。发现一段代码，在两个View中显示出来几乎没什么区别，但是TextView的绘制比咱快多了，这是为什么呢？我尝试一段一段注释自己的除了文本以外元素的绘制代码。从屏蔽代码区划线，到屏蔽空白字符的绘制，最后甚至把代码高亮都换成了普普通通的文本绘制，但是就是比不上EditText。笔者一下子就十分纳闷了，于是开始摸TextView的绘制部分。 摸索TextView源码…下面以Andoird Q的源码为例。打开onDraw()方法翻了一会，看到了调用Layout绘制的代码，不过伴随着的还有mEditor: 123456Path highlight = getUpdatedHighlightPath();if (mEditor != null) &#123;    mEditor.onDraw(canvas, layout, highlight, mHighlightPaint, cursorOffsetVerti...</div></div></div></a><a class="pagination-related" href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处"><img class="cover" src="/img/posts/what-is-slow-in-text-warrior/cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-24</div><div class="info-item-2">Text Warrior中一些不足之处</div></div><div class="info-2"><div class="info-item-1">前言不少Android项目中，都使用了Text Warrior作为它们的代码编辑器。这个项目的视图是直接继承自View的，与那些继承TextView、EditText的项目不同。使用TextView，我们虽然能够获得较为出色的显示效果，但是在文本较长的时候，会造成卡顿阻碍用户输入，因为我们不得不在主线程中更新我们的Spans，而且每更新一个Span，都会导致TextView重绘。而且经常因为正则表达式不够准确而导致高亮出错。TextWarrior则没有此问题。它收到文本更新的时候，会调用其他线程启动Lexer来刷新高亮，在该线程结束之后刷新绘制，这既保证了高亮的正确性，也保证了UI线程的流畅。然而，它其中有一些不足之处导致大文本仍然不能较快地显示，以及一些用户体验的问题。    绘制问题Span查找问题TextWarrior的Span是用ArrayList，依照顺序依次存起来的，Span中保存了它的Start Index。利用有序的性质，我们可以很快地利用二分将特定Index对应的Span找出来。尤其是在绘制时，这十分有用，直接将O（N）复杂的降到O（log N），很快。但是，目...</div></div></div></a><a class="pagination-related" href="/2020/02/15/highlight-editor-creation/" title="一个高亮编辑框的构建历程"><img class="cover" src="/img/posts/highlight-editor-creation/cover.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-15</div><div class="info-item-2">一个高亮编辑框的构建历程</div></div><div class="info-2"><div class="info-item-1">前言制作背景我已经在这之前多次写过高亮编辑框了,自从我入门编程以来,就一直在尝试自己造个高亮编辑框的轮子。如果你不想看Rose无聊的背景叙述，请直接从侧栏跳到“本项目的开端”部分。    第一次尝试 - Editable原理这还是在我玩iApp的时候了。当时觉得一个高亮代码编辑框是iApp源码的一大空缺，所以打算造个源码。初次的尝试对Android原生的控件还是抱有很大的期望的。所以选用了Android自带的TextView来制作。众所周知，TextView自己就能显示不同颜色的文本，比如经常看到的链接就是一个例子。所以TextView拿来玩，不存在原理上的问题。因此，我们用Editable来设置文本颜色Spans，并且用TextView显示就好了。我们在文本更新时对高亮进行更新。至于行号，我们只需要编辑框的左边加一个TextView就好了，然后在文本改变时生成文本设置就好了。而滚动，只需要ScrollView和HorizontalScrollView套娃就行了。再者，Spans的匹配只需要轻轻地写个正则表达式Pattern + Matcher就可以匹配了。  过程于是我们造出了...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Rosemoe</div><div class="author-info-description">A lazy Android developer</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Rosemoe"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Rosemoe" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="javascript:copyEmail();" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到Rosemoe的小博客~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.</span> <span class="toc-text">作业</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.2.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">图片处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E7%BB%98%E5%88%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">模拟绘制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">1.2.4.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解"><img src="/img/posts/csu-programming-test-2025-2/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中南大学2025年第二批预推免机试题解"/></a><div class="content"><a class="title" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解">中南大学2025年第二批预推免机试题解</a><time datetime="2025-10-18T02:28:34.000Z" title="发表于 2025-10-18 10:28:34">2025-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘"><img src="/img/posts/replay-on-a-network-problem-in-contest/cover.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校赛防火墙配置导致比赛机器断网问题复盘"/></a><div class="content"><a class="title" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘">校赛防火墙配置导致比赛机器断网问题复盘</a><time datetime="2025-07-05T09:44:10.000Z" title="发表于 2025-07-05 17:44:10">2025-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img src="/img/posts/xcpc-campus-contest-technically/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"/></a><div class="content"><a class="title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img src="/img/posts/codeforces-hacks-on-unordered-map/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"/></a><div class="content"><a class="title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img src="/img/posts/codeforces-888/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"/></a><div class="content"><a class="title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2025 By Rosemoe</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.1</a></span></div><div class="footer_custom_text">にゃん~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><script src="/"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
           }
-        }, '']
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
       }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
     }
   }
-  
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
-  script.id = 'MathJax-script'
-  script.async = true
-  document.head.appendChild(script)
-} else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typesetPromise()
-}</script></div><script async src="/js/sideloaded.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="にゃん~,喵~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async src="/js/sideloaded.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="true" data-text="にゃん~,喵~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

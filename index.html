@@ -9,16 +9,114 @@
 <meta property="article:author" content="Rosemoe">
 <meta property="article:tag" content="Android,Java,Kotlin,Algorithm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rosemoe.cyou/img/head.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.rosemoe.cyou/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://blog.rosemoe.cyou/img/head.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Rosemoe的小博客",
+  "alternateName": [
+    "Just Some Random Thoughts",
+    "blog.rosemoe.cyou"
+  ],
+  "url": "https://blog.rosemoe.cyou/"
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.rosemoe.cyou/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -34,16 +132,14 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  lightbox: 'https://fancyapps.com/fancybox/',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
+  islazyloadPlugin: false,
   isAnchor: true,
   percent: {
     toc: true,
@@ -52,237 +148,99 @@
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'Rosemoe的小博客',
-  isPost: false,
-  isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2025-10-18 16:39:19',
-  highlightLangExpand: 'null',
-  highlightLangCollapse: 'cpp'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Rosemoe的小博客"><span class="site-name">Rosemoe的小博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解"><img class="post-bg" src="/img/posts/csu-programming-test-2025-2/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中南大学2025年第二批预推免机试题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解">中南大学2025年第二批预推免机试题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-18T02:28:34.000Z" title="发表于 2025-10-18 10:28:34">2025-10-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6/">中南大学</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%9C%BA%E8%AF%95/">机试</a></span></div><div class="content">试题来源于中南大学2025年第二批预推免上机测试。咕咕很久了一直没有写下来，今天终于抽出时间记录一下。
-一共 A-E 五道题，每个题目基本上都需要输入多组测试数据，有的题目没有在输入开头提供测试数据的个数，导致测试时有部分同学不会输入爆零。另外需要记得多测清空。
-个人过题顺序：CBADE，感觉编排顺序不太好，A 题放了个臭模拟，其实 B 题才是最简单的。做题之前可以先概览一遍所有的题目，不用和第一题死磕（老师人挺好，测试中途有提醒考生）。
-A题题目大意给定类似 1a2(3xy(ab)) 的字符串，根据数字重复其后的内容，需要正确处理括号（括号可能嵌套）。输入的字符串长度应该是不超过几百。
-例如：
-
-
-
-变换前
-变换后
-
-
-
-abc
-abc
-
-
-(a)
-a
-
-
-1a
-a
-
-
-2a3(b)
-aabbb
-
-
-2(1a2(b))
-abbabb
-
-
-题目思路题目需要处理的字符串较短，主要需要把整个处理过程写对。可以编写一个递归程序来处理括号。
-反正就是模拟，如果动手写过编译原理里面的 Lexer 程序应该这个题也能写出来。程序写多了模拟题就不难。
-B题题目大意给定 $M$ 段内存，$N$ 个分配请求，每段内存和分配请求都有一个大小，一个请求只能被分配一段内存，且该段内存的，问能满足几个分配请求。
-数据范围：$1\le M,N\le 200$
-题目思路先对内存段、分配请求按照大小排序，然后从小 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘"><img class="post-bg" src="/img/posts/replay-on-a-network-problem-in-contest/cover.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校赛防火墙配置导致比赛机器断网问题复盘"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘">校赛防火墙配置导致比赛机器断网问题复盘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-07-05T09:44:10.000Z" title="发表于 2025-07-05 17:44:10">2025-07-05</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Windows/">Windows</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/DHCP/">DHCP</a></span></div><div class="content">TL;DR祖传环境配置脚本太草台，导致选手机器大面积断网。解决方式是防火墙放通 DHCP 服务器地址和 255.255.255.255 广播地址。
-问题背景前不久，学校如期举办了程序设计竞赛校内选拔赛，我和以往一样使用了我祖传的环境配置脚本让志愿者对各个机器的环境进行配置。
-在环境配置时，各个机器的网还好好的，除了有一台机器出现了“未识别的网络”的情况重配了一下，当时也没太在意，以为是机器偶发的情况。但是在临近比赛开始时，用于比赛的机器出现了大面积的断网，最后比赛推迟两次，一共推迟 40 分钟，还是让选手在能访问外网的情况下进行作答，实在是本次比赛的一大败笔。
-
-在推迟的时间里我查看了一下各个机器的状况，发现实际上是 IP 全掉了。一开始，我还在怀疑是不是学校的路由器出了什么毛病，把这些机器的 IP 全撤了，但是想想其他没有配比赛环境的机器并没有断网，所以应该排除这个问题。我也尝试修改脚本，看看能不能修改一下防火墙规则，让它能重新获取 IP，但是我把整个 10.0.0.0/8 段放通也获取不到 IP。此时过了计划开始时间 15 分钟了，为了让比赛开始时间不拖太久，我只好决定让比赛志愿者执行还原命令，删除防火墙规则。
-后来比赛中我拿一台空闲的机器看了一下，发现 DHCP 的“获得租约时间”和“租约过期时间”只相差大约一个小时，而从配环境到断网也是差不多一个小时（后来实测租期是 45  ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img class="post-bg" src="/img/posts/xcpc-campus-contest-technically/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">技术心得</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/XCPC/">XCPC</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/DOMjudge/">DOMjudge</a></span></div><div class="content">前言时光飞逝，笔者的大学生涯已经来到大三的尾声，即将面临读研还是就业的艰难选择，也不再有太多精力组织校内的 XCPC 比赛。我希望在这里记下一些关于配置选手机器、搭建评测系统的相关经验，谈谈一场 XCPC 校赛的技术工作是如何完成的。
-本篇文章将按照时间顺序，介绍如何开展赛前到赛后的技术工作，内容将尽可能详细。
-校赛技术环境笔者所在学校的基本技术环境如下：
-
-选手机器为 Windows 系统，自动还原，不让装镜像
-不同机房的选手机系统存在很多软件差异
-难以通过外部手段限制选手机器能访问的网络地址
-校内有一台专用的比赛服务器
-
-我不太清楚其他学校的情况如何，不过这也许和多数学校的条件相近。
-本篇内容的本地&#x2F;服务器环境
-个人 Windows 电脑
-Ubuntu Server 22.04 LTS 服务器
-DOMjudge 8.2.3
-icpctools 2.5.936
-
-阅读需要的知识&#x2F;能力举办一场简单的校赛，技术方面的要求不高，但是至少需要以下方面的知识&#x2F;能力：
-
-网络方面的基本知识
-Windows&#x2F;Linux 基本命令行操作
-在 Linux 下编辑文件
-Docker 的基本使用
-阅读软件文档的能力
-
-比赛前比赛前首要的就是搭建比赛的评测系统，导入队伍信息，其次是完成选手机操作系统的配置。
-搭建比赛评测系统比赛评测系统采用 DOMjudge，如无 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img class="post-bg" src="/img/posts/codeforces-hacks-on-unordered-map/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Codeforces/">Codeforces</a></span></div><div class="content">打了一下Codeforces Round 891 (Div. 3)，赛后看到F题的赛时通过解答被叉（hack）了一大把，非常好奇为啥，所以笔者在hack phase结束之后看了一下这些hack数据的hack点是什么，发现大多数都是叉unordered_map的。这又让我想起刚开始打cf的时候在某场Div. 4中使用了unordered_map结果在hack phase被叉的惨痛经历，然后我突然就想以牙还牙，以后也要叉别人的unordered_map，于是就有了这篇文章。
-unordered_map 和 map 的工作原理在Codeforces比赛中，我们通常会选择map而不是unordered_map，尽管map上的插入和查找操作的时间复杂度是$O(log\ N)$的，而unordered_map的插入和查找操作却是均摊$O(1)$的。为什么我们要做这种令人费解的时间复杂度牺牲？原因就在于哈希表的内部工作原理使得它可能被轻易地攻击。
-map根据Cpp Reference的说明：
-1234std::map is a sorted associative container that contains key-value pairs with unique keys. Keys are sorted by using the comparison function Compare. S ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img class="post-bg" src="/img/posts/codeforces-888/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Codeforces/">Codeforces</a></span></div><div class="content">每个题目的代码部分只给出了一组数据的解题流程。请注意，Codeforces上都是多组数据的。
-代码中的il均表示long long类型。
-
-
-Problem A. Escalator Conversations题意有$n$个人，$m$级台阶,每节台阶的高是$k$，给出每个人的身高$h_i$，以及自己的身高$H$。其中某人能与另一人对话的条件是他们的身高差等于一级或多级台阶的高度差。现在问$n$个人中有几人能和自己对话，可行性相互独立。
-题解注意对话两人不能站在同一级台阶上。能对话的条件是两人身高差的绝对值能被$k$整除，并且大于$0$，小于$k\cdot m$
-代码123456789101112131415void solve() &#123;    int n, m ,k, H;    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; H;    vector&lt;int&gt; h(n);    for (auto &amp;v : h) &#123;        cin &gt;&gt; v;    &#125;    int ans = 0;;    for (auto v : h) &#123;        if (abs(v - H) % k == 0 &amp;&amp; abs(v - H) / k &lt; m &a ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/24/atcoder-abc311/" title="AtCoder Beginner Contest 311 A-E 题解"><img class="post-bg" src="/img/posts/atcoder-abc311/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 311 A-E 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/24/atcoder-abc311/" title="AtCoder Beginner Contest 311 A-E 题解">AtCoder Beginner Contest 311 A-E 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-24T07:23:33.000Z" title="发表于 2023-07-24 15:23:33">2023-07-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Atcoder/">Atcoder</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">代码中的il或i64均表示long long类型。
-
-
-Problem A. First ABC题意给定一个包含大写字母ABC的字符串$S$，长度为$N$，保证ABC在该串中都至少出现过一次，输出第一个保证ABC都至少出现过一次的位置的序号。
-题解既然ABC都至少出现过一次，我们直接查找ABC这几个字母第一次出现的位置，取最大值即可
-代码123456void solve() &#123;    int n;    string s;    cin &gt;&gt; n &gt;&gt; s;    cout &lt;&lt; std::max(&#123;s.find(&#x27;A&#x27;), s.find(&#x27;B&#x27;), s.find(&#x27;C&#x27;)&#125;) + 1;&#125;
-
-Problem B. Vacation Together题意有$N$个人，给出他们$D$天的计划表（x表示该天上班，o表示该天休息）。现在求这$N$个人在这$D$天中能够一起休息的最长连续天数。
-题解我们用$v[i]$表示第$i$天是否有人上班。在读入数据时，如果某人在第$i$天上班，直接令$v[i]$加一即可（当然，你也可以使用bool数组做或运算）。然后我们线性地遍历整个数组，找到最长连续0段的长度即可。数组中的每个元素都只会被访问一次。
-代码123456 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/23/atcoder-abc310/" title="AtCoder Beginner Contest 310 A-F 题解"><img class="post-bg" src="/img/posts/atcoder-abc310/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 310 A-F 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/atcoder-abc310/" title="AtCoder Beginner Contest 310 A-F 题解">AtCoder Beginner Contest 310 A-F 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-23T13:34:35.000Z" title="发表于 2023-07-23 21:34:35">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Atcoder/">Atcoder</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">代码中的il或i64均表示long long类型。
-
-
-Problem A. Order Something Else题意一瓶饮料的正常价格是$P$元，现在有一张优惠券，使得你可以以$Q$元的价格购买这瓶饮料，条件是是必须从给出的$N$道菜中选择一道菜一并购买，第$i$道菜的价格是$D_i$。求出购买这瓶饮料的最低价格。
-题解我们可以使用优惠券也可以不使用优惠券。
-如果我们使用优惠券，则需要再购买一份小菜，我们肯定选择最便宜的小菜，那么买下这瓶饮料的价格最低是$Q+min(D_1, D_2,..,D_n)$。
-如果不使用优惠券，那么会以原价$P$买下这瓶饮料。
-答案就是上面两式的较小者。
-代码123456789101112131415void impl() &#123;    int n, p, q;    cin &gt;&gt; n &gt;&gt; p &gt;&gt; q;    int m, c;    cin &gt;&gt; m;    for (int i = 1;i &lt; n;i++) &#123;        cin &gt;&gt; c;        m = std::min(m, c);    &#125;    if (q + m &lt; p) &#123;        cout &lt;&lt; (q + m);    &#125; else ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/10/24/whut-2022-autumn-c-answer/" title="WHUT2022秋C语言A类答案"><img class="post-bg" src="/img/posts/whut-2022-autumn-c-answer/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WHUT2022秋C语言A类答案"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/10/24/whut-2022-autumn-c-answer/" title="WHUT2022秋C语言A类答案">WHUT2022秋C语言A类答案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-24T09:45:05.000Z" title="发表于 2022-10-24 17:45:05">2022-10-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="content">C理论A_编程练习1-顺序结构主要是一些基础语法，输入输出，和对类型的理解。
-7-1 计算整数各位数字之和这里直接用循环实现了。
-123456789#include&lt;stdio.h&gt;int main() &#123;    int a, b = 0;    scanf(&quot;%d&quot;, &amp;a);    while (a)        b += a % 10, a /= 10;    printf(&quot;%d&quot;, b);    return 0;&#125;
-7-2 计算代数表达式使用内置的数学函数解决
-12345678910#include&lt;stdio.h&gt;#include&lt;math.h&gt;#define PI 3.14159#define to(x) (x * PI / 180)int main() &#123;    double x;    scanf(&quot;%lf&quot;, &amp;x);    printf(&quot;%.2lf&quot;, sqrt((sin(to(60)) + 1) * (sin(to(30)) + 1) / cos(to(x))));    return 0;&#125;
-7-3 A乘以B1234567#include&lt;stdio.h&gt;int mai ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/10/02/android-render-node-using/" title="使用Android RenderNode加速绘制"><img class="post-bg" src="/img/posts/android-render-node-using/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Android RenderNode加速绘制"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/10/02/android-render-node-using/" title="使用Android RenderNode加速绘制">使用Android RenderNode加速绘制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-02T11:57:08.000Z" title="发表于 2021-10-02 19:57:08">2021-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">写在前面的废话研究RenderNode的起因…作为一个代码编辑器的开发者，我十分关注我写的View的绘制速度。于是国庆节放假，心血来潮测试自己编辑器和EditText绘制的性能。发现一段代码，在两个View中显示出来几乎没什么区别，但是TextView的绘制比咱快多了，这是为什么呢？我尝试一段一段注释自己的除了文本以外元素的绘制代码。从屏蔽代码区划线，到屏蔽空白字符的绘制，最后甚至把代码高亮都换成了普普通通的文本绘制，但是就是比不上EditText。笔者一下子就十分纳闷了，于是开始摸TextView的绘制部分。
-摸索TextView源码…下面以Andoird Q的源码为例。打开onDraw()方法翻了一会，看到了调用Layout绘制的代码，不过伴随着的还有mEditor:
-123456Path highlight = getUpdatedHighlightPath();if (mEditor != null) &#123;    mEditor.onDraw(canvas, layout, highlight, mHighlightPaint, cursorOffsetVertical);&#125; else &#123;    layout.draw(canvas, highlight, mHighlightPaint, cursorOffsetVertical);&#125; ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/22/editor-get-started/" title="Sora-editor - Get started"><img class="post-bg" src="/img/posts/editor-get-started/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Sora-editor - Get started"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/22/editor-get-started/" title="Sora-editor - Get started">Sora-editor - Get started</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-22T05:58:06.000Z" title="发表于 2021-08-22 13:58:06">2021-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/sora-editor/">sora-editor</a></span></div><div class="content">PreThe project is fast-moving. This page may not be updated in time. The content of this page may be invalid for newest editor versions.
-Introductionsora-editor is a optimized editor library with a lot of features on Android.It aims at making more people able to develop their own IDEs with less efforts. Also developing the editor is part of the interest of mine.However its license is LGPL v2.1. Be careful about that.As it is still developing and being tested, there may be some bugs and APIs can be easily changed at the stage.
-Get StartedWe use Android Gradle project for example.
-Check your app ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/10/30/image-to-qq-painting/" title="👴玩爆QQ涂鸦"><img class="post-bg" src="/img/posts/image-to-qq-painting/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="👴玩爆QQ涂鸦"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/10/30/image-to-qq-painting/" title="👴玩爆QQ涂鸦">👴玩爆QQ涂鸦</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-30T09:57:33.000Z" title="发表于 2020-10-30 17:57:33">2020-10-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%B0%88/">闲谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Auto-js/">Auto.js</a></span></div><div class="content">作业原因最近逛b站时发现一个宝藏up主：鉴无虚发QQ涂鸦（uid402778937），他利用QQ不久前更新的涂鸦功能进行创作，绘制了许多有趣的涂鸦，还让粉丝群的成员发送一张图 片，他照着画出来。这让我很羡慕，可是我美术不行，加之用手机画画实在不是一键容易的事，手指太粗，屏幕太小，据up自述，完成一件创造大约需要30min，这让我这个急性子更难受。不过我会一点编程，于是想尝试写一个简单的程序来实现此功能。
-过程准备自己使用的手机用的安卓系统，安卓在安卓7.0（Nougat）为辅助功能（AccessibilityService）添加了
-1Boolean dispatchGesture(gesture: GestureDescription, callback: AccessibilityService.GestureResultCallback?, handler: Handler?)
-来在触摸屏上执行一个手势。我们可以利用这个方法来实现涂鸦的功能。不过原生安卓开发很麻烦，受时间限制，采取跨平台的Auto.js来编写js脚本实现。我把步骤分为两步1读取图片并出来成类似简笔画的效果2在屏幕上画出来
-图片处理处理过程见代码了。
-12345678910111213141516var img = images.read(&quot;/storage/emulated/0/n.jpg&quot; ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处"><img class="post-bg" src="/img/posts/what-is-slow-in-text-warrior/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Text Warrior中一些不足之处"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处">Text Warrior中一些不足之处</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-24T10:12:49.000Z" title="发表于 2020-08-24 18:12:49">2020-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/CodeEditor/">CodeEditor</a></span></div><div class="content">前言不少Android项目中，都使用了Text Warrior作为它们的代码编辑器。这个项目的视图是直接继承自View的，与那些继承TextView、EditText的项目不同。使用TextView，我们虽然能够获得较为出色的显示效果，但是在文本较长的时候，会造成卡顿阻碍用户输入，因为我们不得不在主线程中更新我们的Spans，而且每更新一个Span，都会导致TextView重绘。而且经常因为正则表达式不够准确而导致高亮出错。TextWarrior则没有此问题。它收到文本更新的时候，会调用其他线程启动Lexer来刷新高亮，在该线程结束之后刷新绘制，这既保证了高亮的正确性，也保证了UI线程的流畅。然而，它其中有一些不足之处导致大文本仍然不能较快地显示，以及一些用户体验的问题。   
-绘制问题Span查找问题TextWarrior的Span是用ArrayList，依照顺序依次存起来的，Span中保存了它的Start Index。利用有序的性质，我们可以很快地利用二分将特定Index对应的Span找出来。尤其是在绘制时，这十分有用，直接将O（N）复杂的降到O（log N），很快。但是，目前在各处流传的版本都是按照顺序对Span进行查找的，这是realDraw()中关于查找的一段代码
-1234567891011121314151617181920212223//--------------- ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/04/25/android-dev-mistake/" title="记Android开发中一个坑 - ViewRootImpl"><img class="post-bg" src="/img/posts/android-dev-mistake/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记Android开发中一个坑 - ViewRootImpl"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/25/android-dev-mistake/" title="记Android开发中一个坑 - ViewRootImpl">记Android开发中一个坑 - ViewRootImpl</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-25T02:54:55.000Z" title="发表于 2020-04-25 10:54:55">2020-04-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">玩Android开发已经两年有余了，一直保持这一些错误思想，终于在前几天给打破了。作为一个开发老者，你一定看过这样的报错：
-12android.view.ViewImple$CalledFromWrongThreadException:Only the original thread that created a view hierarchy can touch its views.at android.view.ViewImple.checkThread(ViewImpl.java:xxx)
-毫无疑问，八成是你在别的线程尝试对UI进行更新。我们常说那是UI线程之外的线程。但是，为什么报错不是UI thread，而是original呢?我觉得,大多数人都没有想过.前几天看到一篇文章,把我的错误观念打爆了,所以今天记录一下.先来看看checkThread()方法:
-123456void checkThread() &#123;       if (mThread != Thread.currentThread()) &#123;           throw new CalledFromWrongThreadException(                   &quot;Only the original thread that created a view hierarch ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/02/15/highlight-editor-creation/" title="一个高亮编辑框的构建历程"><img class="post-bg" src="/img/posts/highlight-editor-creation/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一个高亮编辑框的构建历程"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/15/highlight-editor-creation/" title="一个高亮编辑框的构建历程">一个高亮编辑框的构建历程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-15T09:01:21.000Z" title="发表于 2020-02-15 17:01:21">2020-02-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Java/">Java</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/">自定义View</a></span></div><div class="content">前言制作背景我已经在这之前多次写过高亮编辑框了,自从我入门编程以来,就一直在尝试自己造个高亮编辑框的轮子。如果你不想看Rose无聊的背景叙述，请直接从侧栏跳到“本项目的开端”部分。   
-第一次尝试 - Editable原理这还是在我玩iApp的时候了。当时觉得一个高亮代码编辑框是iApp源码的一大空缺，所以打算造个源码。初次的尝试对Android原生的控件还是抱有很大的期望的。所以选用了Android自带的TextView来制作。众所周知，TextView自己就能显示不同颜色的文本，比如经常看到的链接就是一个例子。所以TextView拿来玩，不存在原理上的问题。因此，我们用Editable来设置文本颜色Spans，并且用TextView显示就好了。我们在文本更新时对高亮进行更新。至于行号，我们只需要编辑框的左边加一个TextView就好了，然后在文本改变时生成文本设置就好了。而滚动，只需要ScrollView和HorizontalScrollView套娃就行了。再者，Spans的匹配只需要轻轻地写个正则表达式Pattern + Matcher就可以匹配了。 
-过程于是我们造出了第一个高亮编辑框。这个编辑框比较原始，因为遇到一些转义的写法，字符串的高亮就可能发生错乱。下面是用于高亮SpannableStringBuilder的方法(Editable的唯一自带实现类)。代码只给出了一 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Rosemoe</div><div class="author-info__description">A lazy Android developer</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Rosemoe"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Rosemoe" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="javascript:copyEmail();" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到Rosemoe的小博客~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解"><img src="/img/posts/csu-programming-test-2025-2/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中南大学2025年第二批预推免机试题解"/></a><div class="content"><a class="title" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解">中南大学2025年第二批预推免机试题解</a><time datetime="2025-10-18T02:28:34.000Z" title="发表于 2025-10-18 10:28:34">2025-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘"><img src="/img/posts/replay-on-a-network-problem-in-contest/cover.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校赛防火墙配置导致比赛机器断网问题复盘"/></a><div class="content"><a class="title" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘">校赛防火墙配置导致比赛机器断网问题复盘</a><time datetime="2025-07-05T09:44:10.000Z" title="发表于 2025-07-05 17:44:10">2025-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img src="/img/posts/xcpc-campus-contest-technically/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"/></a><div class="content"><a class="title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img src="/img/posts/codeforces-hacks-on-unordered-map/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"/></a><div class="content"><a class="title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img src="/img/posts/codeforces-888/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"/></a><div class="content"><a class="title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/css/custom_styles.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Rosemoe的小博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">Rosemoe的小博客</h1></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解"><img class="post-bg" src="/img/posts/csu-programming-test-2025-2/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中南大学2025年第二批预推免机试题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解">中南大学2025年第二批预推免机试题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-10-18T02:28:34.000Z" title="发表于 2025-10-18 10:28:34">2025-10-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6/">中南大学</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%BA%E8%AF%95/">机试</a></span></div><div class="content">试题来源于中南大学2025年第二批预推免上机测试。咕咕很久了一直没有写下来，今天终于抽出时间记录一下。 一共 A-E 五道题，每个题目基本上都需要输入多组测试数据，有的题目没有在输入开头提供测试数据的个数，导致测试时有部分同学不会输入爆零。另外需要记得多测清空。 个人过题顺序：CBADE，感觉编排顺序不太好，A 题放了个臭模拟，其实 B 题才是最简单的。做题之前可以先概览一遍所有的题目，不用和第一题死磕（老师人挺好，测试中途有提醒考生）。 A题题目大意给定类似 1a2(3xy(ab)) 的字符串，根据数字重复其后的内容，需要正确处理括号（括号可能嵌套）。输入的字符串长度应该是不超过几百。 例如：    变换前 变换后    abc abc   (a) a   1a a   2a3(b) aabbb   2(1a2(b)) abbabb   题目思路题目需要处理的字符串较短，主要需要把整个处理过程写对。可以编写一个递归程序来处理括号。 反正就是模拟，如果动手写过编译原理里面的 Lexer 程序应该这个题也能写出来。程序写多了模拟题就不难。 B题题目大意给定 $M$ 段内存，$N$ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘"><img class="post-bg" src="/img/posts/replay-on-a-network-problem-in-contest/cover.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校赛防火墙配置导致比赛机器断网问题复盘"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘">校赛防火墙配置导致比赛机器断网问题复盘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-07-05T09:44:10.000Z" title="发表于 2025-07-05 17:44:10">2025-07-05</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Windows/">Windows</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DHCP/">DHCP</a></span></div><div class="content">TL;DR祖传环境配置脚本太草台，导致选手机器大面积断网。解决方式是防火墙放通 DHCP 服务器地址和 255.255.255.255 广播地址。 问题背景前不久，学校如期举办了程序设计竞赛校内选拔赛，我和以往一样使用了我祖传的环境配置脚本让志愿者对各个机器的环境进行配置。 在环境配置时，各个机器的网还好好的，除了有一台机器出现了“未识别的网络”的情况重配了一下，当时也没太在意，以为是机器偶发的情况。但是在临近比赛开始时，用于比赛的机器出现了大面积的断网，最后比赛推迟两次，一共推迟 40 分钟，还是让选手在能访问外网的情况下进行作答，实在是本次比赛的一大败笔。  在推迟的时间里我查看了一下各个机器的状况，发现实际上是 IP 全掉了。一开始，我还在怀疑是不是学校的路由器出了什么毛病，把这些机器的 IP 全撤了，但是想想其他没有配比赛环境的机器并没有断网，所以应该排除这个问题。我也尝试修改脚本，看看能不能修改一下防火墙规则，让它能重新获取 IP，但是我把整个 10.0.0.0/8 段放通也获取不到 IP。此时过了计划开始时间 15 分钟了，为了让比赛开始时间不拖太久，我只好决定让比赛...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img class="post-bg" src="/img/posts/xcpc-campus-contest-technically/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">技术心得</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/XCPC/">XCPC</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DOMjudge/">DOMjudge</a></span></div><div class="content">前言时光飞逝，笔者的大学生涯已经来到大三的尾声，即将面临读研还是就业的艰难选择，也不再有太多精力组织校内的 XCPC 比赛。我希望在这里记下一些关于配置选手机器、搭建评测系统的相关经验，谈谈一场 XCPC 校赛的技术工作是如何完成的。 本篇文章将按照时间顺序，介绍如何开展赛前到赛后的技术工作，内容将尽可能详细。 校赛技术环境笔者所在学校的基本技术环境如下：  选手机器为 Windows 系统，自动还原，不让装镜像 不同机房的选手机系统存在很多软件差异 难以通过外部手段限制选手机器能访问的网络地址 校内有一台专用的比赛服务器  我不太清楚其他学校的情况如何，不过这也许和多数学校的条件相近。 本篇内容的本地&#x2F;服务器环境 个人 Windows 电脑 Ubuntu Server 22.04 LTS 服务器 DOMjudge 8.2.3 icpctools 2.5.936  阅读需要的知识&#x2F;能力举办一场简单的校赛，技术方面的要求不高，但是至少需要以下方面的知识&#x2F;能力：  网络方面的基本知识 Windows&#x2F;Linux 基本命令行操作 在 Linux ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img class="post-bg" src="/img/posts/codeforces-hacks-on-unordered-map/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Codeforces/">Codeforces</a></span></div><div class="content">打了一下Codeforces Round 891 (Div. 3)，赛后看到F题的赛时通过解答被叉（hack）了一大把，非常好奇为啥，所以笔者在hack phase结束之后看了一下这些hack数据的hack点是什么，发现大多数都是叉unordered_map的。这又让我想起刚开始打cf的时候在某场Div. 4中使用了unordered_map结果在hack phase被叉的惨痛经历，然后我突然就想以牙还牙，以后也要叉别人的unordered_map，于是就有了这篇文章。 unordered_map 和 map 的工作原理在Codeforces比赛中，我们通常会选择map而不是unordered_map，尽管map上的插入和查找操作的时间复杂度是$O(log\ N)$的，而unordered_map的插入和查找操作却是均摊$O(1)$的。为什么我们要做这种令人费解的时间复杂度牺牲？原因就在于哈希表的内部工作原理使得它可能被轻易地攻击。 map根据Cpp Reference的说明： 1234std::map is a sorted associative container that...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img class="post-bg" src="/img/posts/codeforces-888/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Codeforces/">Codeforces</a></span></div><div class="content">每个题目的代码部分只给出了一组数据的解题流程。请注意，Codeforces上都是多组数据的。 代码中的il均表示long long类型。   Problem A. Escalator Conversations题意有$n$个人，$m$级台阶,每节台阶的高是$k$，给出每个人的身高$h_i$，以及自己的身高$H$。其中某人能与另一人对话的条件是他们的身高差等于一级或多级台阶的高度差。现在问$n$个人中有几人能和自己对话，可行性相互独立。 题解注意对话两人不能站在同一级台阶上。能对话的条件是两人身高差的绝对值能被$k$整除，并且大于$0$，小于$k\cdot m$ 代码123456789101112131415void solve() &#123;    int n, m ,k, H;    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; H;    vector&lt;int&gt; h(n);    for (auto &amp;v : h) &#123;        cin &gt;&gt; v;    &#125;    int ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/24/atcoder-abc311/" title="AtCoder Beginner Contest 311 A-E 题解"><img class="post-bg" src="/img/posts/atcoder-abc311/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 311 A-E 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/24/atcoder-abc311/" title="AtCoder Beginner Contest 311 A-E 题解">AtCoder Beginner Contest 311 A-E 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-24T07:23:33.000Z" title="发表于 2023-07-24 15:23:33">2023-07-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Atcoder/">Atcoder</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">代码中的il或i64均表示long long类型。   Problem A. First ABC题意给定一个包含大写字母ABC的字符串$S$，长度为$N$，保证ABC在该串中都至少出现过一次，输出第一个保证ABC都至少出现过一次的位置的序号。 题解既然ABC都至少出现过一次，我们直接查找ABC这几个字母第一次出现的位置，取最大值即可 代码123456void solve() &#123;    int n;    string s;    cin &gt;&gt; n &gt;&gt; s;    cout &lt;&lt; std::max(&#123;s.find(&#x27;A&#x27;), s.find(&#x27;B&#x27;), s.find(&#x27;C&#x27;)&#125;) + 1;&#125;  Problem B. Vacation Together题意有$N$个人，给出他们$D$天的计划表（x表示该天上班，o表示该天休息）。现在求这$N$个人在这$D$天中能够一起休息的最长连续天数。 题解我们用$v[i]$表示第$i$天是否有人上班。在读入数据时...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/07/23/atcoder-abc310/" title="AtCoder Beginner Contest 310 A-F 题解"><img class="post-bg" src="/img/posts/atcoder-abc310/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 310 A-F 题解"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/23/atcoder-abc310/" title="AtCoder Beginner Contest 310 A-F 题解">AtCoder Beginner Contest 310 A-F 题解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-23T13:34:35.000Z" title="发表于 2023-07-23 21:34:35">2023-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Atcoder/">Atcoder</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">代码中的il或i64均表示long long类型。   Problem A. Order Something Else题意一瓶饮料的正常价格是$P$元，现在有一张优惠券，使得你可以以$Q$元的价格购买这瓶饮料，条件是是必须从给出的$N$道菜中选择一道菜一并购买，第$i$道菜的价格是$D_i$。求出购买这瓶饮料的最低价格。 题解我们可以使用优惠券也可以不使用优惠券。 如果我们使用优惠券，则需要再购买一份小菜，我们肯定选择最便宜的小菜，那么买下这瓶饮料的价格最低是$Q+min(D_1, D_2,..,D_n)$。 如果不使用优惠券，那么会以原价$P$买下这瓶饮料。 答案就是上面两式的较小者。 代码123456789101112131415void impl() &#123;    int n, p, q;    cin &gt;&gt; n &gt;&gt; p &gt;&gt; q;    int m, c;    cin &gt;&gt; m;    for (int i = 1;i &lt; n;i++) &#123;        cin &gt;&gt; c;       ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/10/24/whut-2022-autumn-c-answer/" title="WHUT2022秋C语言A类答案"><img class="post-bg" src="/img/posts/whut-2022-autumn-c-answer/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WHUT2022秋C语言A类答案"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/10/24/whut-2022-autumn-c-answer/" title="WHUT2022秋C语言A类答案">WHUT2022秋C语言A类答案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-24T09:45:05.000Z" title="发表于 2022-10-24 17:45:05">2022-10-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="content">C理论A_编程练习1-顺序结构主要是一些基础语法，输入输出，和对类型的理解。 7-1 计算整数各位数字之和这里直接用循环实现了。 123456789#include&lt;stdio.h&gt;int main() &#123;    int a, b = 0;    scanf(&quot;%d&quot;, &amp;a);    while (a)        b += a % 10, a /= 10;    printf(&quot;%d&quot;, b);    return 0;&#125; 7-2 计算代数表达式使用内置的数学函数解决 12345678910#include&lt;stdio.h&gt;#include&lt;math.h&gt;#define PI 3.14159#define to(x) (x * PI / 180)int main() &#123;    double x;    scanf(&quot;%lf&quot;, &amp;x);    printf(&quot;%.2lf&quot;, sqrt((sin(to(60)) + ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/10/02/android-render-node-using/" title="使用Android RenderNode加速绘制"><img class="post-bg" src="/img/posts/android-render-node-using/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Android RenderNode加速绘制"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/10/02/android-render-node-using/" title="使用Android RenderNode加速绘制">使用Android RenderNode加速绘制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-10-02T11:57:08.000Z" title="发表于 2021-10-02 19:57:08">2021-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">写在前面的废话研究RenderNode的起因…作为一个代码编辑器的开发者，我十分关注我写的View的绘制速度。于是国庆节放假，心血来潮测试自己编辑器和EditText绘制的性能。发现一段代码，在两个View中显示出来几乎没什么区别，但是TextView的绘制比咱快多了，这是为什么呢？我尝试一段一段注释自己的除了文本以外元素的绘制代码。从屏蔽代码区划线，到屏蔽空白字符的绘制，最后甚至把代码高亮都换成了普普通通的文本绘制，但是就是比不上EditText。笔者一下子就十分纳闷了，于是开始摸TextView的绘制部分。 摸索TextView源码…下面以Andoird Q的源码为例。打开onDraw()方法翻了一会，看到了调用Layout绘制的代码，不过伴随着的还有mEditor: 123456Path highlight = getUpdatedHighlightPath();if (mEditor != null) &#123;    mEditor.onDraw(canvas, layout, highlight, mHighlightPaint, cursorOffsetVerti...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/22/editor-get-started/" title="Sora-editor - Get started"><img class="post-bg" src="/img/posts/editor-get-started/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Sora-editor - Get started"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/22/editor-get-started/" title="Sora-editor - Get started">Sora-editor - Get started</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-22T05:58:06.000Z" title="发表于 2021-08-22 13:58:06">2021-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/sora-editor/">sora-editor</a></span></div><div class="content">PreThe project is fast-moving. This page may not be updated in time. The content of this page may be invalid for newest editor versions. Introductionsora-editor is a optimized editor library with a lot of features on Android.It aims at making more people able to develop their own IDEs with less efforts. Also developing the editor is part of the interest of mine.However its license is LGPL v2.1. Be careful about that.As it is still developing and being tested, there may be some bugs and APIs c...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/10/30/image-to-qq-painting/" title="👴玩爆QQ涂鸦"><img class="post-bg" src="/img/posts/image-to-qq-painting/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="👴玩爆QQ涂鸦"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/10/30/image-to-qq-painting/" title="👴玩爆QQ涂鸦">👴玩爆QQ涂鸦</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-30T09:57:33.000Z" title="发表于 2020-10-30 17:57:33">2020-10-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%B2%E8%B0%88/">闲谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Auto-js/">Auto.js</a></span></div><div class="content">作业原因最近逛b站时发现一个宝藏up主：鉴无虚发QQ涂鸦（uid402778937），他利用QQ不久前更新的涂鸦功能进行创作，绘制了许多有趣的涂鸦，还让粉丝群的成员发送一张图 片，他照着画出来。这让我很羡慕，可是我美术不行，加之用手机画画实在不是一键容易的事，手指太粗，屏幕太小，据up自述，完成一件创造大约需要30min，这让我这个急性子更难受。不过我会一点编程，于是想尝试写一个简单的程序来实现此功能。 过程准备自己使用的手机用的安卓系统，安卓在安卓7.0（Nougat）为辅助功能（AccessibilityService）添加了 1Boolean dispatchGesture(gesture: GestureDescription, callback: AccessibilityService.GestureResultCallback?, handler: Handler?) 来在触摸屏上执行一个手势。我们可以利用这个方法来实现涂鸦的功能。不过原生安卓开发很麻烦，受时间限制，采取跨平台的Auto.js来编写js脚本实现。我把步骤分为两步1读取图片并出来成类似简笔画的效果2在...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处"><img class="post-bg" src="/img/posts/what-is-slow-in-text-warrior/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Text Warrior中一些不足之处"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/08/24/what-is-slow-in-text-warrior/" title="Text Warrior中一些不足之处">Text Warrior中一些不足之处</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-24T10:12:49.000Z" title="发表于 2020-08-24 18:12:49">2020-08-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/CodeEditor/">CodeEditor</a></span></div><div class="content">前言不少Android项目中，都使用了Text Warrior作为它们的代码编辑器。这个项目的视图是直接继承自View的，与那些继承TextView、EditText的项目不同。使用TextView，我们虽然能够获得较为出色的显示效果，但是在文本较长的时候，会造成卡顿阻碍用户输入，因为我们不得不在主线程中更新我们的Spans，而且每更新一个Span，都会导致TextView重绘。而且经常因为正则表达式不够准确而导致高亮出错。TextWarrior则没有此问题。它收到文本更新的时候，会调用其他线程启动Lexer来刷新高亮，在该线程结束之后刷新绘制，这既保证了高亮的正确性，也保证了UI线程的流畅。然而，它其中有一些不足之处导致大文本仍然不能较快地显示，以及一些用户体验的问题。    绘制问题Span查找问题TextWarrior的Span是用ArrayList，依照顺序依次存起来的，Span中保存了它的Start Index。利用有序的性质，我们可以很快地利用二分将特定Index对应的Span找出来。尤其是在绘制时，这十分有用，直接将O（N）复杂的降到O（log N），很快。但是，目...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2020/04/25/android-dev-mistake/" title="记Android开发中一个坑 - ViewRootImpl"><img class="post-bg" src="/img/posts/android-dev-mistake/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记Android开发中一个坑 - ViewRootImpl"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/25/android-dev-mistake/" title="记Android开发中一个坑 - ViewRootImpl">记Android开发中一个坑 - ViewRootImpl</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-25T02:54:55.000Z" title="发表于 2020-04-25 10:54:55">2020-04-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">玩Android开发已经两年有余了，一直保持这一些错误思想，终于在前几天给打破了。作为一个开发老者，你一定看过这样的报错： 12android.view.ViewImple$CalledFromWrongThreadException:Only the original thread that created a view hierarchy can touch its views.at android.view.ViewImple.checkThread(ViewImpl.java:xxx) 毫无疑问，八成是你在别的线程尝试对UI进行更新。我们常说那是UI线程之外的线程。但是，为什么报错不是UI thread，而是original呢?我觉得,大多数人都没有想过.前几天看到一篇文章,把我的错误观念打爆了,所以今天记录一下.先来看看checkThread()方法: 123456void checkThread() &#123;       if (mThread != Thread.currentThread()) &#123;           throw new Called...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2020/02/15/highlight-editor-creation/" title="一个高亮编辑框的构建历程"><img class="post-bg" src="/img/posts/highlight-editor-creation/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一个高亮编辑框的构建历程"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/15/highlight-editor-creation/" title="一个高亮编辑框的构建历程">一个高亮编辑框的构建历程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-15T09:01:21.000Z" title="发表于 2020-02-15 17:01:21">2020-02-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Android/">Android</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Java/">Java</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/">自定义View</a></span></div><div class="content">前言制作背景我已经在这之前多次写过高亮编辑框了,自从我入门编程以来,就一直在尝试自己造个高亮编辑框的轮子。如果你不想看Rose无聊的背景叙述，请直接从侧栏跳到“本项目的开端”部分。    第一次尝试 - Editable原理这还是在我玩iApp的时候了。当时觉得一个高亮代码编辑框是iApp源码的一大空缺，所以打算造个源码。初次的尝试对Android原生的控件还是抱有很大的期望的。所以选用了Android自带的TextView来制作。众所周知，TextView自己就能显示不同颜色的文本，比如经常看到的链接就是一个例子。所以TextView拿来玩，不存在原理上的问题。因此，我们用Editable来设置文本颜色Spans，并且用TextView显示就好了。我们在文本更新时对高亮进行更新。至于行号，我们只需要编辑框的左边加一个TextView就好了，然后在文本改变时生成文本设置就好了。而滚动，只需要ScrollView和HorizontalScrollView套娃就行了。再者，Spans的匹配只需要轻轻地写个正则表达式Pattern + Matcher就可以匹配了。  过程于是我们造出了...</div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Rosemoe</div><div class="author-info-description">A lazy Android developer</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Rosemoe"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Rosemoe" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="javascript:copyEmail();" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到Rosemoe的小博客~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解"><img src="/img/posts/csu-programming-test-2025-2/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中南大学2025年第二批预推免机试题解"/></a><div class="content"><a class="title" href="/2025/10/18/csu-programming-test-2025-2/" title="中南大学2025年第二批预推免机试题解">中南大学2025年第二批预推免机试题解</a><time datetime="2025-10-18T02:28:34.000Z" title="发表于 2025-10-18 10:28:34">2025-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘"><img src="/img/posts/replay-on-a-network-problem-in-contest/cover.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="校赛防火墙配置导致比赛机器断网问题复盘"/></a><div class="content"><a class="title" href="/2025/07/05/replay-on-a-network-problem-in-contest/" title="校赛防火墙配置导致比赛机器断网问题复盘">校赛防火墙配置导致比赛机器断网问题复盘</a><time datetime="2025-07-05T09:44:10.000Z" title="发表于 2025-07-05 17:44:10">2025-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南"><img src="/img/posts/xcpc-campus-contest-technically/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCPC 校赛技术筹备指南"/></a><div class="content"><a class="title" href="/2025/06/08/xcpc-campus-contest-technically/" title="XCPC 校赛技术筹备指南">XCPC 校赛技术筹备指南</a><time datetime="2025-06-08T02:36:46.000Z" title="发表于 2025-06-08 10:36:46">2025-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks"><img src="/img/posts/codeforces-hacks-on-unordered-map/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces比赛中的unordered_map Hacks"/></a><div class="content"><a class="title" href="/2023/08/09/codeforces-hacks-on-unordered-map/" title="Codeforces比赛中的unordered_map Hacks">Codeforces比赛中的unordered_map Hacks</a><time datetime="2023-08-08T16:45:04.000Z" title="发表于 2023-08-09 00:45:04">2023-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解"><img src="/img/posts/codeforces-888/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Codeforces Round 888 (Div.3) A-G 题解"/></a><div class="content"><a class="title" href="/2023/07/26/codeforces-888/" title="Codeforces Round 888 (Div.3) A-G 题解">Codeforces Round 888 (Div.3) A-G 题解</a><time datetime="2023-07-26T07:05:22.000Z" title="发表于 2023-07-26 15:05:22">2023-07-26</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/sora-editor/"><span class="card-category-list-name">sora-editor</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/"><span class="card-category-list-name">技术心得</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">杂谈</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%B0%88/"><span class="card-category-list-name">闲谈</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">题解</span><span class="card-category-list-count">5</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Java/" style="font-size: 1.1em; color: #999">Java</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.1em; color: #999">C语言</a> <a href="/tags/CodeEditor/" style="font-size: 1.1em; color: #999">CodeEditor</a> <a href="/tags/DHCP/" style="font-size: 1.1em; color: #999">DHCP</a> <a href="/tags/DOMjudge/" style="font-size: 1.1em; color: #999">DOMjudge</a> <a href="/tags/Atcoder/" style="font-size: 1.3em; color: #99a1ac">Atcoder</a> <a href="/tags/%E6%9C%BA%E8%AF%95/" style="font-size: 1.1em; color: #999">机试</a> <a href="/tags/Android/" style="font-size: 1.5em; color: #99a9bf">Android</a> <a href="/tags/Codeforces/" style="font-size: 1.3em; color: #99a1ac">Codeforces</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 1.1em; color: #999">自定义View</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.5em; color: #99a9bf">题解</a> <a href="/tags/Auto-js/" style="font-size: 1.1em; color: #999">Auto.js</a> <a href="/tags/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6/" style="font-size: 1.1em; color: #999">中南大学</a> <a href="/tags/XCPC/" style="font-size: 1.1em; color: #999">XCPC</a> <a href="/tags/Windows/" style="font-size: 1.1em; color: #999">Windows</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-02-15T04:34:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-10-18T08:39:19.193Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Rosemoe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">にゃん~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async src="/js/sideloaded.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="にゃん~,喵~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/DHCP/" style="font-size: 1.1em; color: #999">DHCP</a> <a href="/tags/DOMjudge/" style="font-size: 1.1em; color: #999">DOMjudge</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.5em; color: #99a9bf">题解</a> <a href="/tags/XCPC/" style="font-size: 1.1em; color: #999">XCPC</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 1.1em; color: #999">C语言</a> <a href="/tags/Atcoder/" style="font-size: 1.3em; color: #99a1ac">Atcoder</a> <a href="/tags/Auto-js/" style="font-size: 1.1em; color: #999">Auto.js</a> <a href="/tags/Java/" style="font-size: 1.1em; color: #999">Java</a> <a href="/tags/Windows/" style="font-size: 1.1em; color: #999">Windows</a> <a href="/tags/Android/" style="font-size: 1.5em; color: #99a9bf">Android</a> <a href="/tags/%E6%9C%BA%E8%AF%95/" style="font-size: 1.1em; color: #999">机试</a> <a href="/tags/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6/" style="font-size: 1.1em; color: #999">中南大学</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 1.1em; color: #999">自定义View</a> <a href="/tags/Codeforces/" style="font-size: 1.3em; color: #99a1ac">Codeforces</a> <a href="/tags/CodeEditor/" style="font-size: 1.1em; color: #999">CodeEditor</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/07/">
+            <span class="card-archive-list-date">
+              七月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/06/">
+            <span class="card-archive-list-date">
+              六月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/08/">
+            <span class="card-archive-list-date">
+              八月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/07/">
+            <span class="card-archive-list-date">
+              七月 2023
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/10/">
+            <span class="card-archive-list-date">
+              十月 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2021/10/">
+            <span class="card-archive-list-date">
+              十月 2021
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2021/08/">
+            <span class="card-archive-list-date">
+              八月 2021
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-02-15T04:34:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-10-18T09:28:53.946Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2025 By Rosemoe</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.1</a></span></div><div class="footer_custom_text">にゃん~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><script src="/"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async src="/js/sideloaded.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="true" data-text="にゃん~,喵~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
